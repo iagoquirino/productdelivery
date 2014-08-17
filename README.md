@@ -22,3 +22,8 @@ JDK 1.6+ - http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk7-downl
 PostGres - http://www.postgresql.org/download/
 
 Apache Maven 3.0.4+ - http://maven.apache.org/download.cgi
+
+**API´S**
+Para informações de API´S acesse o WIKI.
+
+https://github.com/iquirino88/entregamercadorias/wiki/API%C2%B4S
