@@ -15,13 +15,10 @@ Conforme a origem e destino informado pelo usuário é feito uma verificação d
 Após realizado a verificação é feito o calculo do custo do trajeto com base na autonomia do veículo e o valor do combustivel.
 Retornando um JSON para o usuário com todos os pontos e o custo do trajeto.
 
-Para execução do projeto.
+**Para execução do projeto:**
 
 JDK 1.6+ - http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk7-downloads-1880260.html
 
 PostGres - http://www.postgresql.org/download/
 
 Apache Maven 3.0.4+ - http://maven.apache.org/download.cgi
-
-
-
