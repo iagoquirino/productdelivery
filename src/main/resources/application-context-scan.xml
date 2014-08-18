@@ -29,6 +29,5 @@
 	<context:component-scan base-package="com.wallmart.model" />
 	<context:component-scan base-package="com.wallmart.repository" />
 	<context:component-scan base-package="com.wallmart.service" />
-	<context:component-scan base-package="com.wallmart.validators" />
 	<aop:aspectj-autoproxy />
 </beans>

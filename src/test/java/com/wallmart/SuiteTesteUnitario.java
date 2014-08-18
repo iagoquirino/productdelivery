@@ -8,7 +8,7 @@ import com.wallmart.controller.validators.MapaControllerValidatorTest;
 import com.wallmart.converters.EntregaJSONConverterTest;
 import com.wallmart.converters.MapaJSONConverterTest;
 import com.wallmart.service.EntregaServiceImplTest;
-import com.wallmart.service.validator.EntregaServiceValidatorTest;
+import com.wallmart.service.validators.EntregaServiceValidatorTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

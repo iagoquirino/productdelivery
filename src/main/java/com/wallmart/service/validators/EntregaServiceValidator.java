@@ -1,4 +1,4 @@
-package com.wallmart.service.validator;
+package com.wallmart.service.validators;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;

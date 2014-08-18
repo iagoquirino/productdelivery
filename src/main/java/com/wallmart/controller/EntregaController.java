@@ -25,7 +25,7 @@ import com.wallmart.service.MapaServiceImpl;
 public class EntregaController extends APIController {
 
 	@Autowired
-	private EntregaControllerValidator entregaControllerValidator;
+	private EntregaControllerValidator entregaValidator;
 	
 	@Autowired
 	private EntregaServiceImpl entregaService;
@@ -40,16 +40,15 @@ public class EntregaController extends APIController {
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.OK)
 	public String definirRota(@PathVariable(value = "idMapa")Long idMapa,@RequestParam(value = "origem")String origem,@RequestParam(value = "destino")String destino,@RequestParam(value = "autonomia")Integer autonomia,@RequestParam(value = "valorCombustivel")Double valorCombustivel) throws EntregaMercadoriaException{
-		entregaControllerValidator.validar(origem, destino, autonomia, valorCombustivel);
+		entregaValidator.validar(origem, destino, autonomia, valorCombustivel);
 		Mapa mapa = mapaService.buscarPorId(idMapa);
 		Entrega entrega = entregaService.calcularRota(mapa, origem, destino, autonomia, valorCombustivel);
 		EntregaJSON entregaJSON = entregaJSONConverter.convertToJSON(entrega);
 		return toJSON(entregaJSON);
 	}
-	
-	public void setEntregaControllerValidator(
-			EntregaControllerValidator entregaControllerValidator) {
-		this.entregaControllerValidator = entregaControllerValidator;
+
+	public void setEntregaValidator(EntregaControllerValidator entregaValidator) {
+		this.entregaValidator = entregaValidator;
 	}
 	
 	public void setEntregaService(EntregaServiceImpl entregaService) {

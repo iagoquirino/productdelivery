@@ -48,7 +48,7 @@ public class EntregaControllerTest extends BaseControllerTest {
 	public void setUp(){
 		MockitoAnnotations.initMocks(this);
 		this.init(controller);
-		controller.setEntregaControllerValidator(entregaControllerValidator);
+		controller.setEntregaValidator(entregaControllerValidator);
 		controller.setEntregaJSONConverter(entregaJSONConverter);
 		controller.setEntregaService(entregaService);
 		controller.setMapaService(mapaService);

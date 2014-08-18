@@ -1,4 +1,4 @@
-package com.wallmart.service.validator;
+package com.wallmart.service.validators;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -29,7 +29,7 @@ public class MapaController extends APIController {
 	@Autowired
 	private MapaJSONConverter mapaJSONConverter;
 	@Autowired
-	private MapaControllerValidator mapaControllerValidator;
+	private MapaControllerValidator mapaValidator;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -44,7 +44,7 @@ public class MapaController extends APIController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public String buscarMapaPorId(@PathVariable(value = "id")Long id){
 		MapaJSON mapaJSON = mapaJSONConverter.convertToJSON(mapaService.buscarPorId(id));
-		mapaControllerValidator.validar(mapaJSON);
+		mapaValidator.validar(mapaJSON);
 		return toJSON(mapaJSON);
 	}
 	
@@ -52,7 +52,7 @@ public class MapaController extends APIController {
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public String salvar(MapaJSON mapaJSON){
-		mapaControllerValidator.validarPost(mapaJSON);
+		mapaValidator.validarPost(mapaJSON);
 		Long id = mapaService.salvar(mapaJSONConverter.convertToModel(mapaJSON));
 		return toJSON(new MensagemJSON(id,Constants.SUCESSO));
 	}
@@ -63,7 +63,7 @@ public class MapaController extends APIController {
 	public String deletar(Long id){
 		Mapa mapa = mapaService.buscarPorId(id);
 		MapaJSON mapaJSON = mapaJSONConverter.convertToJSON(mapa);
-		mapaControllerValidator.validar(mapaJSON);
+		mapaValidator.validar(mapaJSON);
 		mapaService.deletar(mapa);
 		return toJSON(new MensagemJSON(Constants.SUCESSO));
 	}
@@ -76,8 +76,8 @@ public class MapaController extends APIController {
 		this.mapaService = mapaService;
 	}
 	
-	public void setMapaControllerValidator(
-			MapaControllerValidator mapaControllerValidator) {
-		this.mapaControllerValidator = mapaControllerValidator;
+	public void setMapaValidator(MapaControllerValidator mapaValidator) {
+		this.mapaValidator = mapaValidator;
 	}
+	
 }

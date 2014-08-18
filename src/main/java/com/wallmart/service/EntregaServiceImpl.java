@@ -14,7 +14,7 @@ import com.wallmart.model.AgrupadorDeRotas;
 import com.wallmart.model.Entrega;
 import com.wallmart.model.mapa.Mapa;
 import com.wallmart.model.mapa.Rota;
-import com.wallmart.service.validator.EntregaServiceValidator;
+import com.wallmart.service.validators.EntregaServiceValidator;
 
 @Service
 public class EntregaServiceImpl {

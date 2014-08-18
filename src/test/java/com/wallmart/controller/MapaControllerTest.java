@@ -45,7 +45,7 @@ public class MapaControllerTest extends BaseControllerTest{
 		this.init(mapaController);
 		mapaController.setMapaJSONConverter(mapaJSONConverter);
 		mapaController.setMapaService(mapaService);
-		mapaController.setMapaControllerValidator(mapaControllerValidator);
+		mapaController.setMapaValidator(mapaControllerValidator);
 	}
 	
 	@Test
