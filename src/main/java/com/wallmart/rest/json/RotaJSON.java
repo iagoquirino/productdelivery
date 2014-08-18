@@ -73,5 +73,4 @@ public class RotaJSON {
 	public void setValorCombustivel(Double valorCombustivel) {
 		this.valorCombustivel = valorCombustivel;
 	}
-	
 }

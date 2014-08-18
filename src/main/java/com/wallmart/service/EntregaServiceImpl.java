@@ -1,11 +1,14 @@
 package com.wallmart.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+
+
 
 
 import com.wallmart.constants.Constants;
@@ -14,13 +17,19 @@ import com.wallmart.model.entrega.Mapa;
 import com.wallmart.model.entrega.Rota;
 import com.wallmart.model.vo.AgrupadorDeRotasVO;
 import com.wallmart.model.vo.EntregaVO;
+import com.wallmart.model.vo.PontoVO;
 
 @Service
 public class EntregaServiceImpl {
 	
+	private static final double ZERO = 0.0;
+
 	public EntregaVO calcularRota(Mapa mapa, String origem, String destino, Integer autonomia,Double valorGasolina) throws EntregaMercadoriaException {
 		validar(mapa);		
 		Map<String, List<Rota>> mapRotasPorOrigem = converterParaMap(mapa.getRotas());
+		if(origem.equals(destino) && mapRotasPorOrigem.containsKey(origem)){
+			return new EntregaVO(ZERO,Arrays.asList(new PontoVO(origem)));	
+		}
 		AgrupadorDeRotasVO processamentoEntrega = processarRotas(origem,destino, mapRotasPorOrigem, new AgrupadorDeRotasVO(Integer.MAX_VALUE));
 		double custo = calcularCusto(processamentoEntrega.getTotalPercorrido(),autonomia,valorGasolina);
 		return new EntregaVO(custo,processamentoEntrega.getLugaresPercorridos());

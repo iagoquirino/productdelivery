@@ -152,6 +152,21 @@ public class MapaControllerValidatorTest {
 	}
 	
 	@Test
+	public void deveValidarQuandoEnviadoMapaComRotasRepetida(){
+		try{
+			MapaJSON mapa = new MapaJSON("mapa");
+			RotaJSON rotaNula = new RotaJSON("origem","destino",1);
+			RotaJSON rotaNula2 = new RotaJSON("origem","destino",2);
+			mapa.setRotas(Arrays.asList(rotaNula,rotaNula2));
+			mapaControllerValidator.validarPost(mapa);
+			Assert.fail();
+		}catch(APIException e){
+			Assert.assertEquals(Constants.MAPA_ROTA_REPETIDA, e.getMensagemJSON().getMensagem());
+			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+		}
+	}
+	
+	@Test
 	public void naoDeveValidarQuandoEnviadoMapa(){
 		try{
 			MapaJSON mapa = new MapaJSON("mapa");

@@ -139,6 +139,25 @@ public class EntregaServiceImplTest {
 		Assert.assertEquals(Double.toString(entrega.getCusto()), Double.toString(3.75));
 	}
 	
+	@Test
+	public void deveRetornarZeroQuandoEncontradoForOMesmoCaminho() throws EntregaMercadoriaException{
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa4(),"A","A",10,2.5);
+		Assert.assertNotNull(entrega);
+		Assert.assertEquals(entrega.getPontos().size(), 1);
+		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "A");
+		Assert.assertEquals(Double.toString(entrega.getCusto()), Double.toString(0.0));
+	}
+	
+	@Test
+	public void deveValidarQuandoNaoEncontradoPontoOrigem() throws EntregaMercadoriaException{
+		try{
+			entregaServiceImpl.calcularRota(getMapa4(),"B","B",10,2.5);
+			Assert.fail();	
+		}catch(EntregaMercadoriaException e){
+			Assert.assertEquals(Constants.ERRO_ROTA, e.getMensagem());
+		}
+	}
+	
 	private Mapa getMapa(){
 		Mapa mapa = new Mapa();
 		mapa.adicionarRota("A","B",10);
@@ -169,6 +188,12 @@ public class EntregaServiceImplTest {
 		mapa.adicionarRota("C","D",30);
 		mapa.adicionarRota("B","E",5);
 		mapa.adicionarRota("D","E",30);
+		return mapa;
+	}
+	
+	private Mapa getMapa4(){
+		Mapa mapa = new Mapa();
+		mapa.adicionarRota("A","A",10);
 		return mapa;
 	}
 }

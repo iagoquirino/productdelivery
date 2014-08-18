@@ -1,5 +1,6 @@
 package com.wallmart.controller.validators;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,8 @@ public class MapaControllerValidator {
 		if(rotasJSON == null || rotasJSON.isEmpty()){
 			throw new APIException(Constants.MAPA_ROTAS_INVALIDAS, HttpStatus.NOT_ACCEPTABLE);
 		}
+		List<String> rotaRepetida = new ArrayList<String>();
+		
 		for(RotaJSON rotaJSON : rotasJSON){
 			if(rotaJSON == null){
 				throw new APIException(Constants.ROTA_INVALIDA, HttpStatus.NOT_ACCEPTABLE);	
@@ -57,6 +60,12 @@ public class MapaControllerValidator {
 			}
 			if(rotaJSON.getDistancia() <= 0){
 				throw new APIException(Constants.ROTA_DISTANCIA_INVALIDA, HttpStatus.NOT_ACCEPTABLE);
+			}
+			String key = rotaJSON.getOrigem()+"|"+rotaJSON.getDestino();
+			if(rotaRepetida.contains(key)){
+				throw new APIException(Constants.MAPA_ROTA_REPETIDA, HttpStatus.NOT_ACCEPTABLE);
+			}else{
+				rotaRepetida.add(key);
 			}
 		}
 	}
