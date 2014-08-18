@@ -63,7 +63,7 @@ public class MapaController extends APIController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.OK)
-	public String deletar(Long id){
+	public String deletar(@PathVariable(value = "id") Long id){
 		Mapa mapa = mapaService.buscarPorId(id);
 		MapaJSON mapaJSON = mapaJSONConverter.convertToJSON(mapa);
 		mapaValidator.validar(mapaJSON);

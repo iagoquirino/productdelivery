@@ -8,13 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Entity;
-
 
 @javax.persistence.Entity
 @Table(name = "ROTA")
 @SequenceGenerator(sequenceName = "SEQ_ROTA" , name = "SEQ_ROTA",allocationSize=1,initialValue=1)
-public class Rota implements Serializable{//,Comparable<Rota> {
+public class Rota implements Serializable,Comparable<Rota> {
 
 
 	/**
@@ -76,13 +74,13 @@ public class Rota implements Serializable{//,Comparable<Rota> {
 		this.distancia = distancia;
 	}
 
-//	@Override
-//	public int compareTo(Rota rota) {
-//		if(this.getDistancia().intValue() > rota.getDistancia().intValue()){
-//			return 1;
-//		}else if(this.getDistancia().intValue() < rota.getDistancia().intValue()){
-//			return -1;
-//		}
-//		return 0;
-//	}
+	@Override
+	public int compareTo(Rota rota) {
+		if(this.getDistancia().intValue() > rota.getDistancia().intValue()){
+			return 1;
+		}else if(this.getDistancia().intValue() < rota.getDistancia().intValue()){
+			return -1;
+		}
+		return 0;
+	}
 }
