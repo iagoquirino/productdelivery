@@ -1,7 +1,6 @@
 entregamercadorias
 ==================
-Entrega de Mercadoria APP é um aplicativo que a partir de rotas definidas por usuários.
-Consegue traçar o melhor caminho para entrega de mercadorias.
+Entrega de Mercadoria APP é um aplicativo que a partir de rotas definidas por usuários consegue traçar o melhor caminho para entrega de mercadorias.
 
 Para a lógica de melhor rota foi baseado nos famosos algoritmos.
 
