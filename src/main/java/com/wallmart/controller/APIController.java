@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.wallmart.exception.APIException;
 import com.wallmart.exception.EntregaMercadoriaException;
-import com.wallmart.model.json.MensagemJSON;
+import com.wallmart.rest.json.MensagemJSON;
 
 public class APIController {
 

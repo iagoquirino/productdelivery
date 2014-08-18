@@ -6,10 +6,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.wallmart.model.json.MapaJSON;
-import com.wallmart.model.json.RotaJSON;
-import com.wallmart.model.mapa.Mapa;
-import com.wallmart.model.mapa.Rota;
+import com.wallmart.model.entrega.Mapa;
+import com.wallmart.model.entrega.Rota;
+import com.wallmart.rest.json.MapaJSON;
+import com.wallmart.rest.json.RotaJSON;
 
 public class MapaJSONConverterTest {
 

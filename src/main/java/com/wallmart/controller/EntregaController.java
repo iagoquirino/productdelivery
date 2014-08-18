@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.wallmart.controller.validators.EntregaControllerValidator;
 import com.wallmart.converters.EntregaJSONConverter;
 import com.wallmart.exception.EntregaMercadoriaException;
-import com.wallmart.model.Entrega;
-import com.wallmart.model.json.EntregaJSON;
-import com.wallmart.model.mapa.Mapa;
+import com.wallmart.model.entrega.Mapa;
+import com.wallmart.model.vo.EntregaVO;
+import com.wallmart.rest.json.EntregaJSON;
 import com.wallmart.service.EntregaServiceImpl;
 import com.wallmart.service.MapaServiceImpl;
 
@@ -42,7 +42,7 @@ public class EntregaController extends APIController {
 	public String definirRota(@PathVariable(value = "idMapa")Long idMapa,@RequestParam(value = "origem")String origem,@RequestParam(value = "destino")String destino,@RequestParam(value = "autonomia")Integer autonomia,@RequestParam(value = "valorCombustivel")Double valorCombustivel) throws EntregaMercadoriaException{
 		entregaValidator.validar(origem, destino, autonomia, valorCombustivel);
 		Mapa mapa = mapaService.buscarPorId(idMapa);
-		Entrega entrega = entregaService.calcularRota(mapa, origem, destino, autonomia, valorCombustivel);
+		EntregaVO entrega = entregaService.calcularRota(mapa, origem, destino, autonomia, valorCombustivel);
 		EntregaJSON entregaJSON = entregaJSONConverter.convertToJSON(entrega);
 		return toJSON(entregaJSON);
 	}

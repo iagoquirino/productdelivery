@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 
 import com.wallmart.constants.Constants;
 import com.wallmart.exception.APIException;
-import com.wallmart.model.json.MapaJSON;
-import com.wallmart.model.json.RotaJSON;
+import com.wallmart.rest.json.MapaJSON;
+import com.wallmart.rest.json.RotaJSON;
 
 public class MapaControllerValidatorTest {
 

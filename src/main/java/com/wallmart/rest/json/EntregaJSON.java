@@ -1,4 +1,4 @@
-package com.wallmart.model.json;
+package com.wallmart.rest.json;
 
 import java.util.List;
 

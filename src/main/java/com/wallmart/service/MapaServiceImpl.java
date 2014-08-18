@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wallmart.model.mapa.Mapa;
+import com.wallmart.model.entrega.Mapa;
 import com.wallmart.repository.interfaces.IMapaRepository;
 
 @Service

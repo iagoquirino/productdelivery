@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.wallmart.constants.Constants;
 import com.wallmart.controller.validators.MapaControllerValidator;
 import com.wallmart.converters.MapaJSONConverter;
-import com.wallmart.model.json.MapaJSON;
-import com.wallmart.model.json.MensagemJSON;
-import com.wallmart.model.mapa.Mapa;
+import com.wallmart.model.entrega.Mapa;
+import com.wallmart.rest.json.MapaJSON;
+import com.wallmart.rest.json.MensagemJSON;
 import com.wallmart.service.MapaServiceImpl;
 
 @Controller

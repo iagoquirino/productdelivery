@@ -2,7 +2,7 @@ package com.wallmart.exception;
 
 import org.springframework.http.HttpStatus;
 
-import com.wallmart.model.json.MensagemJSON;
+import com.wallmart.rest.json.MensagemJSON;
 
 public class APIException extends RuntimeException {
 	

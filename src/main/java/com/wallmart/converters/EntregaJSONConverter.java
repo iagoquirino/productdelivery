@@ -5,15 +5,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.wallmart.model.Entrega;
-import com.wallmart.model.Ponto;
-import com.wallmart.model.json.EntregaJSON;
-import com.wallmart.model.json.PontoJSON;
+import com.wallmart.model.vo.EntregaVO;
+import com.wallmart.model.vo.PontoVO;
+import com.wallmart.rest.json.EntregaJSON;
+import com.wallmart.rest.json.PontoJSON;
 
 @Component
 public class EntregaJSONConverter {
 
-	public EntregaJSON convertToJSON(Entrega entrega) {
+	public EntregaJSON convertToJSON(EntregaVO entrega) {
 		if(entrega == null)
 		{
 			return null;
@@ -25,10 +25,10 @@ public class EntregaJSONConverter {
 		return entregaJSON;
 	}
 
-	private List<PontoJSON> convertPontosToPontosJSON(List<Ponto> pontos) {
+	private List<PontoJSON> convertPontosToPontosJSON(List<PontoVO> pontos) {
 		List<PontoJSON> pontosListJSON = new ArrayList<PontoJSON>();
 		if(pontos != null){
-			for(Ponto ponto : pontos){
+			for(PontoVO ponto : pontos){
 				if(ponto != null){
 					PontoJSON pontoJSON = new PontoJSON(ponto.getNome());
 					pontosListJSON.add(pontoJSON);

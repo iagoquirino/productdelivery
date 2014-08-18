@@ -6,10 +6,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.wallmart.model.Entrega;
-import com.wallmart.model.Ponto;
-import com.wallmart.model.json.EntregaJSON;
-import com.wallmart.model.json.PontoJSON;
+import com.wallmart.model.vo.EntregaVO;
+import com.wallmart.model.vo.PontoVO;
+import com.wallmart.rest.json.EntregaJSON;
+import com.wallmart.rest.json.PontoJSON;
 
 public class EntregaJSONConverterTest {
 
@@ -18,7 +18,7 @@ public class EntregaJSONConverterTest {
 	@Test
 	public void deveConverterParaEntregaJSON()
 	{
-		Entrega entrega = getEntrega();
+		EntregaVO entrega = getEntrega();
 		EntregaJSON entregaJSON = entregaJSONConverter.convertToJSON(entrega);
 		Assert.assertEquals(entrega.getCusto()+"", entrega.getCusto()+"");
 		Assert.assertEquals(entrega.getPontos().size(), entregaJSON.getPontos().size());
@@ -26,16 +26,16 @@ public class EntregaJSONConverterTest {
 		assertPontos(entrega.getPontos().get(1), entregaJSON.getPontos().get(1));
 	}
 
-	private void assertPontos(Ponto ponto, PontoJSON pontoJSON) {
+	private void assertPontos(PontoVO ponto, PontoJSON pontoJSON) {
 		Assert.assertEquals(ponto.getNome(), pontoJSON.getNome());
 	}
 
-	private Entrega getEntrega() {
-		return new Entrega(2.9, getPontos());
+	private EntregaVO getEntrega() {
+		return new EntregaVO(2.9, getPontos());
 	}
 
-	private List<Ponto> getPontos() {
-		return Arrays.asList(new Ponto("teste"),new Ponto("teste2"));
+	private List<PontoVO> getPontos() {
+		return Arrays.asList(new PontoVO("teste"),new PontoVO("teste2"));
 	}
 	
 }

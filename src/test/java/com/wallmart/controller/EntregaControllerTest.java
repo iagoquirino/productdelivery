@@ -18,11 +18,11 @@ import org.springframework.http.MediaType;
 
 import com.wallmart.controller.validators.EntregaControllerValidator;
 import com.wallmart.converters.EntregaJSONConverter;
-import com.wallmart.model.Entrega;
-import com.wallmart.model.json.EntregaJSON;
-import com.wallmart.model.json.PontoJSON;
-import com.wallmart.model.json.RotaJSON;
-import com.wallmart.model.mapa.Mapa;
+import com.wallmart.model.entrega.Mapa;
+import com.wallmart.model.vo.EntregaVO;
+import com.wallmart.rest.json.EntregaJSON;
+import com.wallmart.rest.json.PontoJSON;
+import com.wallmart.rest.json.RotaJSON;
 import com.wallmart.service.EntregaServiceImpl;
 import com.wallmart.service.MapaServiceImpl;
 
@@ -64,7 +64,7 @@ public class EntregaControllerTest extends BaseControllerTest {
 		
 		EntregaJSON entregaJSON = getEntregaJSON();
 		
-		Mockito.when(entregaJSONConverter.convertToJSON(Mockito.any(Entrega.class))).thenReturn(entregaJSON);
+		Mockito.when(entregaJSONConverter.convertToJSON(Mockito.any(EntregaVO.class))).thenReturn(entregaJSON);
 		
 		getMockMvc().perform(get(ENTREGA_CALL,idMapa.toString()).param("origem", rotaJSON.getOrigem()).param("destino", rotaJSON.getDestino()).param("valorCombustivel", rotaJSON.getValorCombustivel().toString()).param("autonomia", rotaJSON.getAutonomia().toString()))		
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -75,7 +75,7 @@ public class EntregaControllerTest extends BaseControllerTest {
         .andExpect(jsonPath("$.pontos.[1].nome", is(entregaJSON.getPontos().get(1).getNome())));
 		
 		Mockito.verify(entregaControllerValidator).validar(Mockito.eq(rotaJSON.getOrigem()),Mockito.eq(rotaJSON.getDestino()),Mockito.eq(rotaJSON.getAutonomia()),Mockito.eq(rotaJSON.getValorCombustivel()));
-		Mockito.verify(entregaJSONConverter).convertToJSON(Mockito.any(Entrega.class));
+		Mockito.verify(entregaJSONConverter).convertToJSON(Mockito.any(EntregaVO.class));
 		Mockito.verify(entregaService).calcularRota(Mockito.eq(mapa), Mockito.eq(rotaJSON.getOrigem()), Mockito.eq(rotaJSON.getDestino()), Mockito.eq(rotaJSON.getAutonomia()), Mockito.eq(rotaJSON.getValorCombustivel()));
 	}
 

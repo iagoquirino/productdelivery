@@ -1,22 +1,27 @@
-package com.wallmart.model;
+package com.wallmart.model.vo;
 
 import java.util.List;
 
-public class Entrega {
+public class EntregaVO {
 	
-	private List<Ponto> pontos;
+	private List<PontoVO> pontos;
 
 	//FIXME BIGDECIMAL
 	private Double custo;
 	
-	public Entrega(Double custo, List<Ponto> pontos) {
+	public EntregaVO() {
+		super();
+	}
+	
+	public EntregaVO(Double custo, List<PontoVO> pontos) {
 		this.custo = custo;
 		this.pontos = pontos;
 	}
-	public List<Ponto> getPontos() {
+	
+	public List<PontoVO> getPontos() {
 		return pontos;
 	}
-	public void setPontos(List<Ponto> pontos) {
+	public void setPontos(List<PontoVO> pontos) {
 		this.pontos = pontos;
 	}
 	public Double getCusto() {

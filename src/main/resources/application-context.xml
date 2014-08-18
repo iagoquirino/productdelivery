@@ -11,28 +11,9 @@
                            http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.0.xsd">
     
     <context:component-scan base-package="com.wallmart" />
-    <import resource="application-context-scan.xml" />
-	<context:annotation-config />
-		<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:/app-config.properties</value>
-			</list>
-		</property>
-	</bean>
-		
 	<import resource="application-context-bd.xml" />
+	<import resource="application-context-scan.xml" />
+	<import resource="application-context-datasource.xml" />
 	<import resource="application-context-mvc.xml" />
 	<tx:annotation-driven />
-	
-	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-	    <property name="messageConverters">
-	        <list>
-	            <ref bean="jacksonMessageConverter"/>
-	        </list>
-	    </property>
-	</bean>
-	
 </beans>

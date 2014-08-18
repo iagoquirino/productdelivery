@@ -1,10 +1,14 @@
-package com.wallmart.model;
+package com.wallmart.model.vo;
 
-public class Ponto {
+public class PontoVO {
 	
 	private String nome;
 	
-	public Ponto(String nome) {
+	public PontoVO() {
+		super();
+	}
+	
+	public PontoVO(String nome) {
 		this.nome = nome;
 	}
 
@@ -24,7 +28,7 @@ public class Ponto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ponto other = (Ponto) obj;
+		PontoVO other = (PontoVO) obj;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;

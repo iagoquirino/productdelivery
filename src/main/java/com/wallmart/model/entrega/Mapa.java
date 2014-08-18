@@ -1,26 +1,30 @@
-package com.wallmart.model.mapa;
+package com.wallmart.model.entrega;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Entity;
 
 @Entity
+@Table(name = "MAPA")
 @SequenceGenerator(sequenceName = "SEQ_MAPA" , name = "SEQ_MAPA",allocationSize=1,initialValue=1)
 public class Mapa implements Serializable {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7911488049323665720L;
+	private static final long serialVersionUID = 4585833083839610504L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_MAPA")
@@ -28,7 +32,7 @@ public class Mapa implements Serializable {
 	
 	private String nome;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "MAPA_ID")
 	private List<Rota> rotas;
 

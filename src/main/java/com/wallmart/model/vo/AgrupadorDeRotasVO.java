@@ -1,19 +1,19 @@
-package com.wallmart.model;
+package com.wallmart.model.vo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AgrupadorDeRotas {
+public class AgrupadorDeRotasVO {
 	
 	private int totalPercorrido;
 	
-	private List<Ponto> lugaresPercorridos;
+	private List<PontoVO> lugaresPercorridos;
 
-	public AgrupadorDeRotas() {
+	public AgrupadorDeRotasVO() {
 		super();
 	}
 	
-	public AgrupadorDeRotas(int totalPercorrido ) {
+	public AgrupadorDeRotasVO(int totalPercorrido ) {
 		this.totalPercorrido = totalPercorrido;
 	}
 
@@ -25,15 +25,15 @@ public class AgrupadorDeRotas {
 		this.totalPercorrido = totalPercorrido;
 	}
 	
-	public List<Ponto> getLugaresPercorridos() {
-		List<Ponto> pontos = new ArrayList<Ponto>();
+	public List<PontoVO> getLugaresPercorridos() {
+		List<PontoVO> pontos = new ArrayList<PontoVO>();
 		if(this.lugaresPercorridos != null){
 			pontos = this.lugaresPercorridos;
 		}
 		return pontos;
 	}
 	
-	public void setLugaresPercorridos(List<Ponto> lugaresPercorridos) {
+	public void setLugaresPercorridos(List<PontoVO> lugaresPercorridos) {
 		this.lugaresPercorridos = lugaresPercorridos;
 	}
 	
@@ -43,20 +43,20 @@ public class AgrupadorDeRotas {
 	}
 	
 	public void adicionarLugar(String lugar){
-		Ponto ponto = new Ponto(lugar);
+		PontoVO ponto = new PontoVO(lugar);
 		adicionarLugar(getLugaresPercorridos(), ponto);
 	}
 
-	private void adicionarLugar(List<Ponto> pontos, Ponto ponto) {
+	private void adicionarLugar(List<PontoVO> pontos, PontoVO ponto) {
 		if(!pontos.contains(ponto)){
 			pontos.add(ponto);	
 		}
 		setLugaresPercorridos(pontos);
 	}
 
-	public void adicionarLugares(List<Ponto> lugares) {
+	public void adicionarLugares(List<PontoVO> lugares) {
 		if(lugares != null){
-			for (Ponto ponto : lugares) {
+			for (PontoVO ponto : lugares) {
 				adicionarLugar(getLugaresPercorridos(), ponto);
 			}	
 		}

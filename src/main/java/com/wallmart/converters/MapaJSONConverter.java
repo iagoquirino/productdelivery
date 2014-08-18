@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
-import com.wallmart.model.json.MapaJSON;
-import com.wallmart.model.json.RotaJSON;
-import com.wallmart.model.mapa.Mapa;
-import com.wallmart.model.mapa.Rota;
+import com.wallmart.model.entrega.Mapa;
+import com.wallmart.model.entrega.Rota;
+import com.wallmart.rest.json.MapaJSON;
+import com.wallmart.rest.json.RotaJSON;
 
 @Component
 public class MapaJSONConverter {

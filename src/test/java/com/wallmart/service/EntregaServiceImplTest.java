@@ -7,8 +7,8 @@ import org.mockito.MockitoAnnotations;
 
 import com.wallmart.constants.Constants;
 import com.wallmart.exception.EntregaMercadoriaException;
-import com.wallmart.model.Entrega;
-import com.wallmart.model.mapa.Mapa;
+import com.wallmart.model.entrega.Mapa;
+import com.wallmart.model.vo.EntregaVO;
 
 public class EntregaServiceImplTest {
 
@@ -22,7 +22,7 @@ public class EntregaServiceImplTest {
 	
 	@Test
 	public void deveRetornarMenorRotaEntre_A_B_Mapa() throws EntregaMercadoriaException{
-		Entrega entrega = entregaServiceImpl.calcularRota(getMapa(),"A","B",10,2.5);
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa(),"A","B",10,2.5);
 		Assert.assertNotNull(entrega);
 		Assert.assertEquals(entrega.getPontos().size(), 2);
 		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "A");
@@ -32,7 +32,7 @@ public class EntregaServiceImplTest {
 	
 	@Test
 	public void deveRetornarMenorRotaEntre_A_D_Mapa() throws EntregaMercadoriaException{
-		Entrega entrega = entregaServiceImpl.calcularRota(getMapa(),"A","D",10,2.5);
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa(),"A","D",10,2.5);
 		Assert.assertNotNull(entrega);
 		Assert.assertEquals(entrega.getPontos().size(), 3);
 		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "A");
@@ -43,7 +43,7 @@ public class EntregaServiceImplTest {
 	
 	@Test
 	public void deveRetornarMenorRotaEntre_A_E_Mapa() throws EntregaMercadoriaException{
-		Entrega entrega = entregaServiceImpl.calcularRota(getMapa(),"A","E",10,2.5);
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa(),"A","E",10,2.5);
 		Assert.assertNotNull(entrega);
 		Assert.assertEquals(entrega.getPontos().size(), 4);
 		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "A");
@@ -75,7 +75,7 @@ public class EntregaServiceImplTest {
 	
 	@Test
 	public void deveRetornarMenorRotaEntre_B_E_Mapa() throws EntregaMercadoriaException{
-		Entrega entrega = entregaServiceImpl.calcularRota(getMapa(),"B","E",10,2.5);
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa(),"B","E",10,2.5);
 		Assert.assertNotNull(entrega);
 		Assert.assertEquals(entrega.getPontos().size(), 3);
 		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "B");
@@ -86,7 +86,7 @@ public class EntregaServiceImplTest {
 	
 	@Test
 	public void deveRetornarMenorRotaEntre_A_B_Mapa2() throws EntregaMercadoriaException{
-		Entrega entrega = entregaServiceImpl.calcularRota(getMapa2(),"A","B",10,2.5);
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa2(),"A","B",10,2.5);
 		Assert.assertNotNull(entrega);
 		Assert.assertEquals(entrega.getPontos().size(), 2);
 		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "A");
@@ -96,7 +96,7 @@ public class EntregaServiceImplTest {
 	
 	@Test
 	public void deveRetornarMenorRotaEntre_A_D_Mapa2() throws EntregaMercadoriaException{
-		Entrega entrega = entregaServiceImpl.calcularRota(getMapa2(),"A","D",10,2.5);
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa2(),"A","D",10,2.5);
 		Assert.assertNotNull(entrega);
 		Assert.assertEquals(entrega.getPontos().size(), 3);
 		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "A");
@@ -107,7 +107,7 @@ public class EntregaServiceImplTest {
 	
 	@Test
 	public void deveRetornarMenorRotaEntre_A_E_Mapa2() throws EntregaMercadoriaException{
-		Entrega entrega = entregaServiceImpl.calcularRota(getMapa2(),"A","E",10,2.5);
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa2(),"A","E",10,2.5);
 		Assert.assertNotNull(entrega);
 		Assert.assertEquals(entrega.getPontos().size(), 4);
 		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "A");
@@ -119,7 +119,7 @@ public class EntregaServiceImplTest {
 	
 	@Test
 	public void deveRetornarMenorRotaEntre_B_E_Mapa2() throws EntregaMercadoriaException{
-		Entrega entrega = entregaServiceImpl.calcularRota(getMapa2(),"B","E",10,2.5);
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa2(),"B","E",10,2.5);
 		Assert.assertNotNull(entrega);
 		Assert.assertEquals(entrega.getPontos().size(), 3);
 		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "B");
@@ -130,7 +130,7 @@ public class EntregaServiceImplTest {
 	
 	@Test
 	public void deveRetornarMenorRotaEntre_A_E_Mapa3() throws EntregaMercadoriaException{
-		Entrega entrega = entregaServiceImpl.calcularRota(getMapa3(),"A","E",10,2.5);
+		EntregaVO entrega = entregaServiceImpl.calcularRota(getMapa3(),"A","E",10,2.5);
 		Assert.assertNotNull(entrega);
 		Assert.assertEquals(entrega.getPontos().size(), 3);
 		Assert.assertEquals(entrega.getPontos().get(0).getNome(), "A");

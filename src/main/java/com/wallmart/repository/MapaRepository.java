@@ -3,7 +3,7 @@ package com.wallmart.repository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wallmart.model.mapa.Mapa;
+import com.wallmart.model.entrega.Mapa;
 import com.wallmart.repository.interfaces.IMapaRepository;
 
 @Repository

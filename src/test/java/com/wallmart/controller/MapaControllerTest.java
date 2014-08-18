@@ -25,9 +25,9 @@ import com.wallmart.constants.Constants;
 import com.wallmart.controller.validators.MapaControllerValidator;
 import com.wallmart.converters.MapaJSONConverter;
 import com.wallmart.exception.APIException;
-import com.wallmart.model.json.MapaJSON;
-import com.wallmart.model.json.RotaJSON;
-import com.wallmart.model.mapa.Mapa;
+import com.wallmart.model.entrega.Mapa;
+import com.wallmart.rest.json.MapaJSON;
+import com.wallmart.rest.json.RotaJSON;
 import com.wallmart.service.MapaServiceImpl;
 
 public class MapaControllerTest extends BaseControllerTest{
