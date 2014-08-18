@@ -11,6 +11,7 @@ Algoritmo de Bellman Ford - http://pt.wikipedia.org/wiki/Algoritmo_de_Bellman-Fo
 Problema do caixeiro-viajante - http://pt.wikipedia.org/wiki/Problema_do_caixeiro-viajante
 
 Conforme a origem e destino informado pelo usuário é feito uma verificação de todas as possíbilidades de rotas, realizando uma somatória de toda a distancia, onde a escolha é baseada na menor somatória.
+
 Após realizado a verificação é feito o calculo do custo do trajeto com base na autonomia do veículo e o valor do combustivel também informado pelo usuário.
 Retornando um JSON para o usuário com todos os pontos e o custo do trajeto.
 
