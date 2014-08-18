@@ -1,35 +1,22 @@
 package com.wallmart.service;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import com.wallmart.constants.Constants;
 import com.wallmart.exception.EntregaMercadoriaException;
 import com.wallmart.model.Entrega;
 import com.wallmart.model.mapa.Mapa;
-import com.wallmart.service.validators.EntregaServiceValidator;
 
 public class EntregaServiceImplTest {
 
 	private EntregaServiceImpl entregaServiceImpl = new EntregaServiceImpl();
 	
-	@Mock
-	private EntregaServiceValidator entregaServiceValidator;
-	
 	@Before
 	public void setUp(){
 		MockitoAnnotations.initMocks(this);
-		entregaServiceImpl.setEntregaServiceValidator(entregaServiceValidator);
-	}
-	
-	@After
-	public void verify() throws EntregaMercadoriaException{
-		Mockito.verify(entregaServiceValidator).validar(Mockito.any(Mapa.class), Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyDouble());
 	}
 	
 	

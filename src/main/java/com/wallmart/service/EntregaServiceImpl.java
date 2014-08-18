@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wallmart.constants.Constants;
@@ -14,20 +13,22 @@ import com.wallmart.model.AgrupadorDeRotas;
 import com.wallmart.model.Entrega;
 import com.wallmart.model.mapa.Mapa;
 import com.wallmart.model.mapa.Rota;
-import com.wallmart.service.validators.EntregaServiceValidator;
 
 @Service
 public class EntregaServiceImpl {
 	
-	@Autowired
-	private EntregaServiceValidator entregaServiceValidator;
-
 	public Entrega calcularRota(Mapa mapa, String origem, String destino, Integer autonomia,Double valorGasolina) throws EntregaMercadoriaException {
-		entregaServiceValidator.validar(mapa,origem,destino,autonomia,valorGasolina);		
+		validar(mapa);		
 		Map<String, List<Rota>> mapRotasPorOrigem = converterParaMap(mapa.getRotas());
 		AgrupadorDeRotas processamentoEntrega = processarRotas(origem,destino, mapRotasPorOrigem, new AgrupadorDeRotas(Integer.MAX_VALUE));
 		double custo = calcularCusto(processamentoEntrega.getTotalPercorrido(),autonomia,valorGasolina);
 		return new Entrega(custo,processamentoEntrega.getLugaresPercorridos());
+	}
+	
+	private void validar(Mapa mapa) throws EntregaMercadoriaException {
+		if(mapa == null){
+			throw new EntregaMercadoriaException(Constants.ITEM_NAO_ENCONTRADO);
+		}
 	}
 
 	private AgrupadorDeRotas processarRotas(String origem,String destino,Map<String, List<Rota>> mapRotasPorOrigem, AgrupadorDeRotas agrupadorEntregas) throws EntregaMercadoriaException
@@ -83,8 +84,4 @@ public class EntregaServiceImpl {
 		return map;
 	}
 
-	public void setEntregaServiceValidator(
-			EntregaServiceValidator entregaServiceValidator) {
-		this.entregaServiceValidator = entregaServiceValidator;
-	}
 }

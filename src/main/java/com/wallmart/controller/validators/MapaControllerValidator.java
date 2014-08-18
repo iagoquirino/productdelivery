@@ -2,7 +2,6 @@ package com.wallmart.controller.validators;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +25,7 @@ public class MapaControllerValidator {
 		if(mapaJSON == null){
 			throw new APIException(Constants.ITEM_INVALIDO, HttpStatus.BAD_REQUEST);
 		}
-		if(StringUtils.isBlank(mapaJSON.getNome())){
+		if(isBlank(mapaJSON.getNome())){
 			throw new APIException(Constants.MAPA_NOME_INVALIDO, HttpStatus.NOT_ACCEPTABLE);
 		}
 		validarRotas(mapaJSON.getRotas());
@@ -40,15 +39,19 @@ public class MapaControllerValidator {
 			if(rotaJSON == null){
 				throw new APIException(Constants.ROTA_INVALIDA, HttpStatus.NOT_ACCEPTABLE);	
 			}
-			if(StringUtils.isBlank(rotaJSON.getOrigem())){
+			if(isBlank(rotaJSON.getOrigem())){
 				throw new APIException(Constants.ROTA_ORIGEM_INVALIDA, HttpStatus.NOT_ACCEPTABLE);
 			}
-			if(StringUtils.isBlank(rotaJSON.getDestino())){
+			if(isBlank(rotaJSON.getDestino())){
 				throw new APIException(Constants.ROTA_DESTINO_INVALIDO, HttpStatus.NOT_ACCEPTABLE);
 			}
 			if(rotaJSON.getDistancia() <= 0){
 				throw new APIException(Constants.ROTA_DISTANCIA_INVALIDA, HttpStatus.NOT_ACCEPTABLE);
 			}
 		}
+	}
+	
+	private boolean isBlank(String string){
+		return string == null || string.isEmpty();
 	}
 }

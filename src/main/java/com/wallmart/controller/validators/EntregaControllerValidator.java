@@ -1,6 +1,5 @@
 package com.wallmart.controller.validators;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +10,10 @@ import com.wallmart.exception.APIException;
 public class EntregaControllerValidator {
 
 	public void validar(String origem, String destino, Integer autonomia,Double valorCombustivel) {
-		if(StringUtils.isBlank(origem)){
+		if(isBlank(origem)){
 			throw new APIException(Constants.ROTA_ORIGEM_INVALIDA, HttpStatus.BAD_REQUEST);
 		}
-		if(StringUtils.isBlank(destino)){
+		if(isBlank(destino)){
 			throw new APIException(Constants.ROTA_DESTINO_INVALIDO, HttpStatus.BAD_REQUEST);
 		}
 		if(autonomia == null || autonomia.intValue() <= 0){
@@ -25,4 +24,7 @@ public class EntregaControllerValidator {
 		}
 	}
 
+	private boolean isBlank(String string){
+		return string == null || string.isEmpty();
+	}
 }

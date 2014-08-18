@@ -8,7 +8,6 @@ import com.wallmart.controller.validators.MapaControllerValidatorTest;
 import com.wallmart.converters.EntregaJSONConverterTest;
 import com.wallmart.converters.MapaJSONConverterTest;
 import com.wallmart.service.EntregaServiceImplTest;
-import com.wallmart.service.validators.EntregaServiceValidatorTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -16,7 +15,6 @@ import com.wallmart.service.validators.EntregaServiceValidatorTest;
 	MapaJSONConverterTest.class,
 	EntregaControllerValidatorTest.class,
 	EntregaServiceImplTest.class,
-	EntregaServiceValidatorTest.class,
 	EntregaJSONConverterTest.class
 })
 public class SuiteTesteUnitario {
