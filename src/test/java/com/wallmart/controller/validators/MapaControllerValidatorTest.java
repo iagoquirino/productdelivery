@@ -3,18 +3,33 @@ package com.wallmart.controller.validators;
 import java.util.Arrays;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
 import com.wallmart.constants.Constants;
 import com.wallmart.exception.APIException;
+import com.wallmart.model.entrega.Mapa;
 import com.wallmart.rest.json.MapaJSON;
 import com.wallmart.rest.json.RotaJSON;
+import com.wallmart.service.MapaServiceImpl;
 
 public class MapaControllerValidatorTest {
 
 	private MapaControllerValidator mapaControllerValidator = new MapaControllerValidator();
 
+	@Mock
+	private MapaServiceImpl mapaService;
+	
+	@Before
+	public void setUp(){
+		MockitoAnnotations.initMocks(this);
+		mapaControllerValidator.setMapaServiceImpl(mapaService);
+	}
+	
 	@Test
 	public void deveValidarQuandoEnviadoMapaNaoEncontrado(){
 		try{
@@ -53,6 +68,18 @@ public class MapaControllerValidatorTest {
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.MAPA_NOME_INVALIDO, e.getMensagemJSON().getMensagem());
+			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+		}
+	}
+	
+	@Test
+	public void deveValidarQuandoEnviadoMapaJaCadastrado(){
+		try{
+			Mockito.when(mapaService.getMapaByNome(Mockito.anyString())).thenReturn(new Mapa());
+			mapaControllerValidator.validarPost(new MapaJSON("teste"));
+			Assert.fail();
+		}catch(APIException e){
+			Assert.assertEquals(Constants.MAPA_JA_CADASTRADO, e.getMensagemJSON().getMensagem());
 			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
 		}
 	}

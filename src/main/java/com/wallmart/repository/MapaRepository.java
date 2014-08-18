@@ -1,5 +1,7 @@
 package com.wallmart.repository;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +15,12 @@ public class MapaRepository extends BaseRepositoryHibernate<Mapa> implements IMa
 	@Override
 	protected Class<Mapa> getEntityClass() {
 		return Mapa.class;
+	}
+
+	public Mapa getByNome(String nome) {
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(getEntityClass());
+		detachedCriteria.add(Restrictions.eq("nome", nome));
+		return findByOneCriteria(detachedCriteria);
 	}
 
 }

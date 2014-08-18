@@ -127,8 +127,9 @@ public class MapaControllerTest extends BaseControllerTest{
 		Long id = 1L;
 		Mockito.when(mapaService.salvar(Mockito.any(Mapa.class))).thenReturn(id);
 		MapaJSON mapaJSON = getMapasJSON().get(0);
-		getMockMvc().perform(post(MAPA_CALL).content(new Gson().toJson(mapaJSON)))
+		getMockMvc().perform(post(MAPA_CALL).content(new Gson().toJson(mapaJSON)).contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 		.andExpect(jsonPath("$.mensagem", is(Constants.SUCESSO)))
 		.andExpect(jsonPath("$.codigo", is(id.intValue())));
 		Mockito.verify(mapaControllerValidator).validarPost(Mockito.any(MapaJSON.class));

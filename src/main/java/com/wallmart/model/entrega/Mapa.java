@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Entity;
 
-@Entity
+@javax.persistence.Entity
 @Table(name = "MAPA")
 @SequenceGenerator(sequenceName = "SEQ_MAPA" , name = "SEQ_MAPA",allocationSize=1,initialValue=1)
 public class Mapa implements Serializable {

@@ -33,7 +33,13 @@ public class MapaServiceImpl {
 		mapaRepository.delete(mapa);
 	}
 	
+	public Mapa getMapaByNome(String nome) {
+		return mapaRepository.getByNome(nome);
+	}
+
+	
 	public void setMapaRepository(IMapaRepository mapaRepository) {
 		this.mapaRepository = mapaRepository;
 	}
+
 }

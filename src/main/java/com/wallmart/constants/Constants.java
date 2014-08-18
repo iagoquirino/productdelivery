@@ -14,4 +14,5 @@ public class Constants {
 	public static final String ROTA_DISTANCIA_INVALIDA = "distancia.rota.invalida";
 	public static final String VALOR_COMBUSTIVEL_INVALIDO = "valor.combustivel.invalido";
 	public static final String AUTONOMIA_INVALIDA = "autonomia.invalida";
+	public static final String MAPA_JA_CADASTRADO = "mapa.ja.cadastrado";
 }

@@ -2,16 +2,22 @@ package com.wallmart.controller.validators;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import com.wallmart.constants.Constants;
 import com.wallmart.exception.APIException;
+import com.wallmart.model.entrega.Mapa;
 import com.wallmart.rest.json.MapaJSON;
 import com.wallmart.rest.json.RotaJSON;
+import com.wallmart.service.MapaServiceImpl;
 
 @Component
 public class MapaControllerValidator {
+	
+	@Autowired
+	private MapaServiceImpl mapaServiceImpl;
 
 	public void validar(MapaJSON mapaJSON)
 	{
@@ -27,6 +33,10 @@ public class MapaControllerValidator {
 		}
 		if(isBlank(mapaJSON.getNome())){
 			throw new APIException(Constants.MAPA_NOME_INVALIDO, HttpStatus.NOT_ACCEPTABLE);
+		}
+		Mapa mapa = mapaServiceImpl.getMapaByNome(mapaJSON.getNome());
+		if(mapa != null){
+			throw new APIException(Constants.MAPA_JA_CADASTRADO, HttpStatus.NOT_ACCEPTABLE);
 		}
 		validarRotas(mapaJSON.getRotas());
 	}
@@ -53,5 +63,10 @@ public class MapaControllerValidator {
 	
 	private boolean isBlank(String string){
 		return string == null || string.isEmpty();
+	}
+	
+	
+	public void setMapaServiceImpl(MapaServiceImpl mapaServiceImpl) {
+		this.mapaServiceImpl = mapaServiceImpl;
 	}
 }

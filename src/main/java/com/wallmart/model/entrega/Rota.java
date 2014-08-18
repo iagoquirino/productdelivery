@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Entity;
 
 
-@Entity
+@javax.persistence.Entity
 @Table(name = "ROTA")
 @SequenceGenerator(sequenceName = "SEQ_ROTA" , name = "SEQ_ROTA",allocationSize=1,initialValue=1)
 public class Rota implements Serializable{//,Comparable<Rota> {

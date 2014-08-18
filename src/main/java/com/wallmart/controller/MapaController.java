@@ -7,11 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.google.gson.Gson;
 import com.wallmart.constants.Constants;
 import com.wallmart.controller.validators.MapaControllerValidator;
 import com.wallmart.converters.MapaJSONConverter;
@@ -48,10 +50,11 @@ public class MapaController extends APIController {
 		return toJSON(mapaJSON);
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/", method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public String salvar(MapaJSON mapaJSON){
+	public String salvar(@RequestBody String json){
+		MapaJSON mapaJSON = new Gson().fromJson(json, MapaJSON.class);
 		mapaValidator.validarPost(mapaJSON);
 		Long id = mapaService.salvar(mapaJSONConverter.convertToModel(mapaJSON));
 		return toJSON(new MensagemJSON(id,Constants.SUCESSO));
