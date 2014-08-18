@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+
 import com.wallmart.constants.Constants;
 import com.wallmart.exception.EntregaMercadoriaException;
 import com.wallmart.model.entrega.Mapa;
@@ -69,7 +70,8 @@ public class EntregaServiceImpl {
 	}
 
 	private double calcularCusto(int totalDistancia, int autonomia, double valorGasolina) {
-		return  valorGasolina * totalDistancia /autonomia;
+		double valorCalculado = valorGasolina * totalDistancia /autonomia;
+		return  com.wallmart.util.Utils.arredondar(valorCalculado);
 	}
 	
 	private Map<String, List<Rota>> converterParaMap(List<Rota> rotas) {

@@ -75,7 +75,7 @@ public class MapaControllerValidatorTest {
 	@Test
 	public void deveValidarQuandoEnviadoMapaJaCadastrado(){
 		try{
-			Mockito.when(mapaService.getMapaByNome(Mockito.anyString())).thenReturn(new Mapa());
+			Mockito.when(mapaService.buscarMapaPorNome(Mockito.anyString())).thenReturn(new Mapa());
 			mapaControllerValidator.validarPost(new MapaJSON("teste"));
 			Assert.fail();
 		}catch(APIException e){

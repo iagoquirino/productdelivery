@@ -34,7 +34,7 @@ public class MapaControllerValidator {
 		if(isBlank(mapaJSON.getNome())){
 			throw new APIException(Constants.MAPA_NOME_INVALIDO, HttpStatus.NOT_ACCEPTABLE);
 		}
-		Mapa mapa = mapaServiceImpl.getMapaByNome(mapaJSON.getNome());
+		Mapa mapa = mapaServiceImpl.buscarMapaPorNome(mapaJSON.getNome());
 		if(mapa != null){
 			throw new APIException(Constants.MAPA_JA_CADASTRADO, HttpStatus.NOT_ACCEPTABLE);
 		}

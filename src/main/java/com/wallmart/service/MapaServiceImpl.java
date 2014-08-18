@@ -33,8 +33,8 @@ public class MapaServiceImpl {
 		mapaRepository.delete(mapa);
 	}
 	
-	public Mapa getMapaByNome(String nome) {
-		return mapaRepository.getByNome(nome);
+	public Mapa buscarMapaPorNome(String nome) {
+		return mapaRepository.buscarMapaPorNome(nome);
 	}
 
 	

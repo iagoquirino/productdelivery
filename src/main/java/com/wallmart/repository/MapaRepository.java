@@ -17,7 +17,7 @@ public class MapaRepository extends BaseRepositoryHibernate<Mapa> implements IMa
 		return Mapa.class;
 	}
 
-	public Mapa getByNome(String nome) {
+	public Mapa buscarMapaPorNome(String nome) {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(getEntityClass());
 		detachedCriteria.add(Restrictions.eq("nome", nome));
 		return findByOneCriteria(detachedCriteria);
