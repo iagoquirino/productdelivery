@@ -16,6 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 
+import com.wallmart.controller.validators.EntregaControllerValidator;
 import com.wallmart.converters.EntregaJSONConverter;
 import com.wallmart.model.Entrega;
 import com.wallmart.model.json.EntregaJSON;
@@ -24,7 +25,6 @@ import com.wallmart.model.json.RotaJSON;
 import com.wallmart.model.mapa.Mapa;
 import com.wallmart.service.EntregaServiceImpl;
 import com.wallmart.service.MapaServiceImpl;
-import com.wallmart.validators.EntregaControllerValidator;
 
 public class EntregaControllerTest extends BaseControllerTest {
 	

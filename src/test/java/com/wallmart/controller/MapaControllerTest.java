@@ -12,7 +12,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -23,13 +22,13 @@ import org.springframework.http.MediaType;
 
 import com.google.gson.Gson;
 import com.wallmart.constants.Constants;
+import com.wallmart.controller.validators.MapaControllerValidator;
 import com.wallmart.converters.MapaJSONConverter;
 import com.wallmart.exception.APIException;
 import com.wallmart.model.json.MapaJSON;
 import com.wallmart.model.json.RotaJSON;
 import com.wallmart.model.mapa.Mapa;
 import com.wallmart.service.MapaServiceImpl;
-import com.wallmart.validators.MapaControllerValidator;
 
 public class MapaControllerTest extends BaseControllerTest{
 
@@ -135,6 +134,12 @@ public class MapaControllerTest extends BaseControllerTest{
 		Mockito.verify(mapaControllerValidator).validarPost(Mockito.any(MapaJSON.class));
 		Mockito.verify(mapaJSONConverter).convertToModel(Mockito.any(MapaJSON.class));
 	}
+	
+	@Test
+	public void teste(){
+		System.out.println(new Gson().toJson(getMapasJSON()));
+	}
+	
 	
 	private List<MapaJSON> getMapasJSON() {
 		MapaJSON mapaJSON = new MapaJSON(1L,"teste");

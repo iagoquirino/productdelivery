@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.wallmart.controller.validators.EntregaControllerValidator;
 import com.wallmart.converters.EntregaJSONConverter;
 import com.wallmart.exception.EntregaMercadoriaException;
 import com.wallmart.model.Entrega;
 import com.wallmart.model.json.EntregaJSON;
-import com.wallmart.model.json.RotaJSON;
 import com.wallmart.model.mapa.Mapa;
 import com.wallmart.service.EntregaServiceImpl;
 import com.wallmart.service.MapaServiceImpl;
-import com.wallmart.validators.EntregaControllerValidator;
 
 @Controller
 @RequestMapping(value = "entrega")
