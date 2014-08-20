@@ -23,6 +23,8 @@ PostGres - http://www.postgresql.org/download/
 
 Apache Maven 3.0.4+ - http://maven.apache.org/download.cgi
 
+Apache Tomcat 7 - http://tomcat.apache.org/download-70.cgi
+
 **API´S**
 
 Para informações de API´S acesse o WIKI.
