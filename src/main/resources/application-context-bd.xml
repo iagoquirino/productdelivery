@@ -23,16 +23,6 @@
 						http://cxf.apache.org/schemas/jaxws.xsd"
 	default-autowire="byName">
 	
-	<!-- Arquivos de configuracao *.properties -->
-	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:/app-config.properties</value>
-			</list>
-		</property>
-	</bean>
-
 	<!-- Session Factory junto ao Spring -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">

@@ -11,6 +11,17 @@
                            http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.0.xsd">
     
     <context:component-scan base-package="com.wallmart" />
+    
+	<!-- Arquivos de configuracao *.properties -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:/app-config.properties</value>
+			</list>
+		</property>
+	</bean>    
+    
 	<import resource="application-context-bd.xml" />
 	<import resource="application-context-scan.xml" />
 	<import resource="application-context-datasource.xml" />

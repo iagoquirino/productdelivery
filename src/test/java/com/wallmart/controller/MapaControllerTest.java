@@ -136,12 +136,6 @@ public class MapaControllerTest extends BaseControllerTest{
 		Mockito.verify(mapaJSONConverter).convertToModel(Mockito.any(MapaJSON.class));
 	}
 	
-	@Test
-	public void teste(){
-		System.out.println(new Gson().toJson(getMapasJSON()));
-	}
-	
-	
 	private List<MapaJSON> getMapasJSON() {
 		MapaJSON mapaJSON = new MapaJSON(1L,"teste");
 		RotaJSON rotaJSON = new RotaJSON("origem","destino",1);
