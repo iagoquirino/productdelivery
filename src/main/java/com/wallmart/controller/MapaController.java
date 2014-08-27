@@ -18,13 +18,12 @@ import com.wallmart.constants.Constants;
 import com.wallmart.controller.validators.MapaControllerValidator;
 import com.wallmart.converters.MapaJSONConverter;
 import com.wallmart.exception.EntregaMercadoriaException;
-import com.wallmart.model.entrega.Mapa;
 import com.wallmart.rest.json.MapaJSON;
 import com.wallmart.rest.json.MensagemJSON;
 import com.wallmart.service.interfaces.IMapaService;
 
 @Controller
-@RequestMapping(value = "mapa")
+@RequestMapping(value = "mapas")
 public class MapaController extends APIController {
 	
 	@Autowired

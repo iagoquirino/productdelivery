@@ -16,6 +16,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.hibernate.version>3.6.10.Final</org.hibernate.version>
 		<org.codehaus.jackson.version>1.9.9</org.codehaus.jackson.version>
+		<org.aspectj.version>1.6.11</org.aspectj.version>
 		<com.jayway.jsonpath.version>0.8.1</com.jayway.jsonpath.version>
 		<org.mockito.version>1.9.5</org.mockito.version>
 	</properties>
@@ -79,6 +80,19 @@
 				<version>${org.codehaus.jackson.version}</version>
 			</dependency>
 	    <!-- FIM JSON -->
+	    <!-- ASPECTJ -->
+		    <dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${org.aspectj.version}</version>
+			</dependency>
+	
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${org.aspectj.version}</version>
+			</dependency>
+	    <!-- FIM ASPECTJ-->	    
 	    <!-- JAVAX  -->
 			<dependency>
 				<groupId>javax.servlet</groupId>

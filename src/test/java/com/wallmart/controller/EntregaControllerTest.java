@@ -28,7 +28,9 @@ import com.wallmart.service.MapaServiceImpl;
 
 public class EntregaControllerTest extends BaseControllerTest {
 	
-	private String ENTREGA_CALL = "/entrega/{idMapa}/rota";
+	private String ENTREGA_CALL = "/entregas/{idMapa}/rotas";
+	
+	private String ENTREGA_ROTAS_CALL = "/entregas/rotas";
 	
 	private EntregaController controller = new EntregaController();
 	
@@ -67,6 +69,28 @@ public class EntregaControllerTest extends BaseControllerTest {
 		Mockito.when(entregaJSONConverter.convertToJSON(Mockito.any(EntregaVO.class))).thenReturn(entregaJSON);
 		
 		getMockMvc().perform(get(ENTREGA_CALL,idMapa.toString()).param("origem", rotaJSON.getOrigem()).param("destino", rotaJSON.getDestino()).param("valorCombustivel", rotaJSON.getValorCombustivel().toString()).param("autonomia", rotaJSON.getAutonomia().toString()))		
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.custo", is(entregaJSON.getCusto())))
+   	    .andExpect(jsonPath("$.pontos", hasSize(entregaJSON.getPontos().size())))
+        .andExpect(jsonPath("$.pontos.[0].nome", is(entregaJSON.getPontos().get(0).getNome())))
+        .andExpect(jsonPath("$.pontos.[1].nome", is(entregaJSON.getPontos().get(1).getNome())));
+		
+		Mockito.verify(entregaControllerValidator).validar(Mockito.eq(rotaJSON.getOrigem()),Mockito.eq(rotaJSON.getDestino()),Mockito.eq(rotaJSON.getAutonomia()),Mockito.eq(rotaJSON.getValorCombustivel()));
+		Mockito.verify(entregaJSONConverter).convertToJSON(Mockito.any(EntregaVO.class));
+		Mockito.verify(entregaService).calcularRota(Mockito.eq(mapa), Mockito.eq(rotaJSON.getOrigem()), Mockito.eq(rotaJSON.getDestino()), Mockito.eq(rotaJSON.getAutonomia()), Mockito.eq(rotaJSON.getValorCombustivel()));
+	}
+	
+	@Test
+	public void deveRealizarVerificacaoDeMelhorRotaDeEntregaPorNomeMapa() throws Exception{
+		RotaJSON rotaJSON = new RotaJSON("ORIGEM", "DESTINO", 1 ,2.5);
+		Mapa mapa = new Mapa();
+		String nomeMapa = "SP";		
+		Mockito.when(mapaService.buscar(Mockito.eq(nomeMapa))).thenReturn(mapa);
+		EntregaJSON entregaJSON = getEntregaJSON();
+		Mockito.when(entregaJSONConverter.convertToJSON(Mockito.any(EntregaVO.class))).thenReturn(entregaJSON);
+		
+		getMockMvc().perform(get(ENTREGA_ROTAS_CALL).param("mapa", nomeMapa).param("origem", rotaJSON.getOrigem()).param("destino", rotaJSON.getDestino()).param("valorCombustivel", rotaJSON.getValorCombustivel().toString()).param("autonomia", rotaJSON.getAutonomia().toString()))		
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.custo", is(entregaJSON.getCusto())))

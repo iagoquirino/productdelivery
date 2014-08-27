@@ -13,6 +13,7 @@ import com.wallmart.model.entrega.Mapa;
 import com.wallmart.rest.json.MapaJSON;
 import com.wallmart.rest.json.RotaJSON;
 import com.wallmart.service.MapaServiceImpl;
+import com.wallmart.service.interfaces.IMapaService;
 
 @Component
 public class MapaControllerValidator {
@@ -20,7 +21,7 @@ public class MapaControllerValidator {
 	private static final HttpStatus BAD_REQUEST = HttpStatus.BAD_REQUEST;
 	
 	@Autowired
-	private MapaServiceImpl mapaServiceImpl;
+	private IMapaService mapaService;
 
 	public void validar(MapaJSON mapaJSON)
 	{
@@ -31,7 +32,7 @@ public class MapaControllerValidator {
 		if(isBlank(mapaJSON.getNome())){
 			throw new APIException(Constants.MAPA_NOME_INVALIDO, BAD_REQUEST);
 		}
-		Mapa mapa = mapaServiceImpl.buscar(mapaJSON.getNome());
+		Mapa mapa = mapaService.buscar(mapaJSON.getNome());
 		if(mapa != null){
 			throw new APIException(Constants.MAPA_JA_CADASTRADO, BAD_REQUEST);
 		}
@@ -70,8 +71,7 @@ public class MapaControllerValidator {
 		return string == null || string.isEmpty();
 	}
 	
-	
-	public void setMapaServiceImpl(MapaServiceImpl mapaServiceImpl) {
-		this.mapaServiceImpl = mapaServiceImpl;
+	public void setMapaService(IMapaService mapaService) {
+		this.mapaService = mapaService;
 	}
 }

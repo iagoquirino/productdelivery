@@ -21,7 +21,7 @@ import com.wallmart.service.interfaces.IEntregaService;
 import com.wallmart.service.interfaces.IMapaService;
 
 @Controller
-@RequestMapping(value = "entrega")
+@RequestMapping(value = "entregas")
 public class EntregaController extends APIController {
 
 	@Autowired
@@ -36,12 +36,23 @@ public class EntregaController extends APIController {
 	@Autowired 
 	private EntregaJSONConverter entregaJSONConverter;
 	
-	@RequestMapping(value = "/{idMapa}/rota", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{idMapa}/rotas", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.OK)
 	public String rota(@PathVariable(value = "idMapa")Long idMapa,@RequestParam(value = "origem")String origem,@RequestParam(value = "destino")String destino,@RequestParam(value = "autonomia")Integer autonomia,@RequestParam(value = "valorCombustivel")Double valorCombustivel) throws EntregaMercadoriaException{
 		entregaValidator.validar(origem, destino, autonomia, valorCombustivel);
 		Mapa mapa = mapaService.buscar(idMapa);
+		EntregaVO entrega = entregaService.calcularRota(mapa, origem, destino, autonomia, valorCombustivel);
+		EntregaJSON entregaJSON = entregaJSONConverter.convertToJSON(entrega);
+		return toJSON(entregaJSON);
+	}
+	
+	@RequestMapping(value = "/rotas", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@ResponseStatus(value = HttpStatus.OK)
+	public String rota(@RequestParam(value = "mapa")String nomeMapa,@RequestParam(value = "origem")String origem,@RequestParam(value = "destino")String destino,@RequestParam(value = "autonomia")Integer autonomia,@RequestParam(value = "valorCombustivel")Double valorCombustivel) throws EntregaMercadoriaException{
+		entregaValidator.validar(origem, destino, autonomia, valorCombustivel);
+		Mapa mapa = mapaService.buscar(nomeMapa);
 		EntregaVO entrega = entregaService.calcularRota(mapa, origem, destino, autonomia, valorCombustivel);
 		EntregaJSON entregaJSON = entregaJSONConverter.convertToJSON(entrega);
 		return toJSON(entregaJSON);

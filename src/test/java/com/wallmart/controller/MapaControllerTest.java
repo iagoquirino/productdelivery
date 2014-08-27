@@ -31,7 +31,7 @@ import com.wallmart.service.MapaServiceImpl;
 
 public class MapaControllerTest extends BaseControllerTest{
 
-	private final static String MAPA_CALL = "/mapa/";
+	private final static String MAPA_CALL = "/mapas/";
 	
 	MapaController mapaController = new MapaController();
 	@Mock private MapaJSONConverter mapaJSONConverter;
