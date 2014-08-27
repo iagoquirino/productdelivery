@@ -1,9 +1,7 @@
 package com.wallmart.controller;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -64,7 +62,7 @@ public class MapaControllerIntegrationTest extends BaseControllerTest{
 	
 	@Test
 	public void deveVerificarMapaParaDelecao() throws Exception{
-		Mapa mapa = mapaService.buscarMapaPorNome("teste-integration-controller");
+		Mapa mapa = mapaService.buscar("teste-integration-controller");
 		getMockMvc().perform(delete(MAPA_CALL+"{id}",mapa.getId()+""))
         .andExpect(status().isOk())
 		.andExpect(jsonPath("$.mensagem", is(Constants.SUCESSO)));

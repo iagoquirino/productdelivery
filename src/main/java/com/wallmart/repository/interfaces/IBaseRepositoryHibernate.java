@@ -15,11 +15,11 @@ public interface IBaseRepositoryHibernate<T> {
 	
 	List<T> findByCriteria( DetachedCriteria criteria );
 	
-	void delete (T entity);
+	void deletar (T entity);
 	
 	void deleteAll (List<T> listEntities);
 	
-	T save(T t);
+	T salvar(T t);
 	
 	T saveOrUpdate(T t);
 	
@@ -27,9 +27,9 @@ public interface IBaseRepositoryHibernate<T> {
 	
 	List<T> saveAll(List<T> listT);
 	
-	T loadById( Long id );
+	T buscar( Long id );
 	
-	List<T> listAll( );
+	List<T> listarTodos( );
 	
 	int executeUpdate(String sql);
 

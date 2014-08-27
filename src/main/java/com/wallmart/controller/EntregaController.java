@@ -17,8 +17,8 @@ import com.wallmart.exception.EntregaMercadoriaException;
 import com.wallmart.model.entrega.Mapa;
 import com.wallmart.model.vo.EntregaVO;
 import com.wallmart.rest.json.EntregaJSON;
-import com.wallmart.service.EntregaServiceImpl;
-import com.wallmart.service.MapaServiceImpl;
+import com.wallmart.service.interfaces.IEntregaService;
+import com.wallmart.service.interfaces.IMapaService;
 
 @Controller
 @RequestMapping(value = "entrega")
@@ -28,20 +28,20 @@ public class EntregaController extends APIController {
 	private EntregaControllerValidator entregaValidator;
 	
 	@Autowired
-	private EntregaServiceImpl entregaService;
+	private IEntregaService entregaService;
 	
 	@Autowired
-	private MapaServiceImpl mapaService;
+	private IMapaService mapaService;
 	
 	@Autowired 
 	private EntregaJSONConverter entregaJSONConverter;
 	
-	@RequestMapping(value = "/{idMapa}/definir-rota", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{idMapa}/rota", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.OK)
-	public String definirRota(@PathVariable(value = "idMapa")Long idMapa,@RequestParam(value = "origem")String origem,@RequestParam(value = "destino")String destino,@RequestParam(value = "autonomia")Integer autonomia,@RequestParam(value = "valorCombustivel")Double valorCombustivel) throws EntregaMercadoriaException{
+	public String rota(@PathVariable(value = "idMapa")Long idMapa,@RequestParam(value = "origem")String origem,@RequestParam(value = "destino")String destino,@RequestParam(value = "autonomia")Integer autonomia,@RequestParam(value = "valorCombustivel")Double valorCombustivel) throws EntregaMercadoriaException{
 		entregaValidator.validar(origem, destino, autonomia, valorCombustivel);
-		Mapa mapa = mapaService.buscarPorId(idMapa);
+		Mapa mapa = mapaService.buscar(idMapa);
 		EntregaVO entrega = entregaService.calcularRota(mapa, origem, destino, autonomia, valorCombustivel);
 		EntregaJSON entregaJSON = entregaJSONConverter.convertToJSON(entrega);
 		return toJSON(entregaJSON);
@@ -51,16 +51,16 @@ public class EntregaController extends APIController {
 		this.entregaValidator = entregaValidator;
 	}
 	
-	public void setEntregaService(EntregaServiceImpl entregaService) {
-		this.entregaService = entregaService;
-	}
-	
 	public void setEntregaJSONConverter(
 			EntregaJSONConverter entregaJSONConverter) {
 		this.entregaJSONConverter = entregaJSONConverter;
 	}
 	
-	public void setMapaService(MapaServiceImpl mapaService) {
+	public void setMapaService(IMapaService mapaService) {
 		this.mapaService = mapaService;
+	}
+	
+	public void setEntregaService(IEntregaService entregaService) {
+		this.entregaService = entregaService;
 	}
 }

@@ -17,17 +17,18 @@ import com.google.gson.Gson;
 import com.wallmart.constants.Constants;
 import com.wallmart.controller.validators.MapaControllerValidator;
 import com.wallmart.converters.MapaJSONConverter;
+import com.wallmart.exception.EntregaMercadoriaException;
 import com.wallmart.model.entrega.Mapa;
 import com.wallmart.rest.json.MapaJSON;
 import com.wallmart.rest.json.MensagemJSON;
-import com.wallmart.service.MapaServiceImpl;
+import com.wallmart.service.interfaces.IMapaService;
 
 @Controller
 @RequestMapping(value = "mapa")
 public class MapaController extends APIController {
 	
 	@Autowired
-	private MapaServiceImpl mapaService;
+	private IMapaService mapaService;
 	@Autowired
 	private MapaJSONConverter mapaJSONConverter;
 	@Autowired
@@ -37,16 +38,15 @@ public class MapaController extends APIController {
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.OK)
 	public String listar(){
-		List<MapaJSON> listJSON = mapaJSONConverter.converToListJSON(mapaService.buscarTodos());
+		List<MapaJSON> listJSON = mapaJSONConverter.converToListJSON(mapaService.listarTodos());
 		return toJSON(listJSON);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.OK)
-	public String buscarMapaPorId(@PathVariable(value = "id")Long id){
-		MapaJSON mapaJSON = mapaJSONConverter.convertToJSON(mapaService.buscarPorId(id));
-		mapaValidator.validar(mapaJSON);
+	public String buscar(@PathVariable(value = "id")Long id) throws EntregaMercadoriaException{
+		MapaJSON mapaJSON = mapaJSONConverter.convertToJSON(mapaService.buscar(id));
 		return toJSON(mapaJSON);
 	}
 	
@@ -63,11 +63,8 @@ public class MapaController extends APIController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.OK)
-	public String deletar(@PathVariable(value = "id") Long id){
-		Mapa mapa = mapaService.buscarPorId(id);
-		MapaJSON mapaJSON = mapaJSONConverter.convertToJSON(mapa);
-		mapaValidator.validar(mapaJSON);
-		mapaService.deletar(mapa);
+	public String deletar(@PathVariable(value = "id") Long id) throws EntregaMercadoriaException{
+		mapaService.deletar(mapaService.buscar(id));
 		return toJSON(new MensagemJSON(Constants.SUCESSO));
 	}
 	
@@ -75,12 +72,12 @@ public class MapaController extends APIController {
 		this.mapaJSONConverter = mapaJSONConverter;
 	}
 	
-	public void setMapaService(MapaServiceImpl mapaService) {
-		this.mapaService = mapaService;
-	}
-	
 	public void setMapaValidator(MapaControllerValidator mapaValidator) {
 		this.mapaValidator = mapaValidator;
+	}
+	
+	public void setMapaService(IMapaService mapaService) {
+		this.mapaService = mapaService;
 	}
 	
 }

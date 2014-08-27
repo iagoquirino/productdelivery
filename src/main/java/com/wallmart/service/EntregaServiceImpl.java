@@ -18,9 +18,10 @@ import com.wallmart.model.entrega.Rota;
 import com.wallmart.model.vo.AgrupadorDeRotasVO;
 import com.wallmart.model.vo.EntregaVO;
 import com.wallmart.model.vo.PontoVO;
+import com.wallmart.service.interfaces.IEntregaService;
 
 @Service
-public class EntregaServiceImpl {
+public class EntregaServiceImpl implements IEntregaService {
 	
 	private static final double ZERO = 0.0;
 

@@ -31,26 +31,6 @@ public class MapaControllerValidatorTest {
 	}
 	
 	@Test
-	public void deveValidarQuandoEnviadoMapaNaoEncontrado(){
-		try{
-			mapaControllerValidator.validar(null);
-			Assert.fail();
-		}catch(APIException e){
-			Assert.assertEquals(Constants.ITEM_NAO_ENCONTRADO, e.getMensagemJSON().getMensagem());
-			Assert.assertEquals(HttpStatus.NOT_FOUND, e.getHttpStatus());
-		}
-	}
-	
-	@Test
-	public void naoDeveValidarBuscarMapa(){
-		try{
-			mapaControllerValidator.validar(new MapaJSON());
-		}catch(APIException e){
-			Assert.fail();
-		}
-	}
-	
-	@Test
 	public void deveValidarQuandoEnviadoMapaNulo(){
 		try{
 			mapaControllerValidator.validarPost(null);
@@ -68,19 +48,19 @@ public class MapaControllerValidatorTest {
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.MAPA_NOME_INVALIDO, e.getMensagemJSON().getMensagem());
-			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+			Assert.assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
 		}
 	}
 	
 	@Test
 	public void deveValidarQuandoEnviadoMapaJaCadastrado(){
 		try{
-			Mockito.when(mapaService.buscarMapaPorNome(Mockito.anyString())).thenReturn(new Mapa());
+			Mockito.when(mapaService.buscar(Mockito.anyString())).thenReturn(new Mapa());
 			mapaControllerValidator.validarPost(new MapaJSON("teste"));
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.MAPA_JA_CADASTRADO, e.getMensagemJSON().getMensagem());
-			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+			Assert.assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
 		}
 	}
 
@@ -91,7 +71,7 @@ public class MapaControllerValidatorTest {
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.MAPA_ROTAS_INVALIDAS, e.getMensagemJSON().getMensagem());
-			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+			Assert.assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
 		}
 	}
 	
@@ -105,7 +85,7 @@ public class MapaControllerValidatorTest {
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.ROTA_INVALIDA, e.getMensagemJSON().getMensagem());
-			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+			Assert.assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
 		}
 	}
 	
@@ -119,7 +99,7 @@ public class MapaControllerValidatorTest {
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.ROTA_ORIGEM_INVALIDA, e.getMensagemJSON().getMensagem());
-			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+			Assert.assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
 		}
 	}
 	
@@ -133,7 +113,7 @@ public class MapaControllerValidatorTest {
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.ROTA_DESTINO_INVALIDO, e.getMensagemJSON().getMensagem());
-			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+			Assert.assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
 		}
 	}
 
@@ -147,7 +127,7 @@ public class MapaControllerValidatorTest {
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.ROTA_DISTANCIA_INVALIDA, e.getMensagemJSON().getMensagem());
-			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+			Assert.assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
 		}
 	}
 	
@@ -162,7 +142,7 @@ public class MapaControllerValidatorTest {
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.MAPA_ROTA_REPETIDA, e.getMensagemJSON().getMensagem());
-			Assert.assertEquals(HttpStatus.NOT_ACCEPTABLE, e.getHttpStatus());
+			Assert.assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
 		}
 	}
 	

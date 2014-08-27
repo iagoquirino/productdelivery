@@ -75,7 +75,7 @@ public abstract class BaseRepositoryHibernate<T> extends HibernateDaoSupport imp
         }
     }
     
-    public void delete (T entity)
+    public void deletar (T entity)
     {
     	getHibernateTemplate().delete(entity);
     }
@@ -85,7 +85,7 @@ public abstract class BaseRepositoryHibernate<T> extends HibernateDaoSupport imp
     	getHibernateTemplate().deleteAll( listEntities );
     }
 	
-	public T save(T t){
+	public T salvar(T t){
 		try {
 			getHibernateTemplate().save(t);
 		} catch (Exception e) {
@@ -121,12 +121,12 @@ public abstract class BaseRepositoryHibernate<T> extends HibernateDaoSupport imp
 		return listT;
 	}
 	
-	public T loadById( Long id )
+	public T buscar( Long id )
 	{
 		return (T) getHibernateTemplate().get( getEntityClass(), id );
 	}
 	
-	public List<T> listAll( )
+	public List<T> listarTodos( )
 	{
 		return getHibernateTemplate().loadAll( getEntityClass() );
 	}

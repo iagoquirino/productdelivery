@@ -28,7 +28,7 @@ import com.wallmart.service.MapaServiceImpl;
 
 public class EntregaControllerTest extends BaseControllerTest {
 	
-	private String ENTREGA_CALL = "/entrega/{idMapa}/definir-rota";
+	private String ENTREGA_CALL = "/entrega/{idMapa}/rota";
 	
 	private EntregaController controller = new EntregaController();
 	
@@ -60,7 +60,7 @@ public class EntregaControllerTest extends BaseControllerTest {
 		Long idMapa = 1L;
 		Mapa mapa = new Mapa();
 		
-		Mockito.when(mapaService.buscarPorId(Mockito.eq(idMapa))).thenReturn(mapa);
+		Mockito.when(mapaService.buscar(Mockito.eq(idMapa))).thenReturn(mapa);
 		
 		EntregaJSON entregaJSON = getEntregaJSON();
 		

@@ -17,14 +17,13 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 import com.google.gson.Gson;
 import com.wallmart.constants.Constants;
 import com.wallmart.controller.validators.MapaControllerValidator;
 import com.wallmart.converters.MapaJSONConverter;
-import com.wallmart.exception.APIException;
+import com.wallmart.exception.EntregaMercadoriaException;
 import com.wallmart.model.entrega.Mapa;
 import com.wallmart.rest.json.MapaJSON;
 import com.wallmart.rest.json.RotaJSON;
@@ -63,7 +62,7 @@ public class MapaControllerTest extends BaseControllerTest{
         .andExpect(jsonPath("$[0].rotas.[0].destino", is("destino")))
         .andExpect(jsonPath("$[0].rotas.[0].distancia", is(1)));
 
-		Mockito.verify(mapaService).buscarTodos();
+		Mockito.verify(mapaService).listarTodos();
 		Mockito.verify(mapaJSONConverter).converToListJSON(Mockito.anyList());
 	}
 
@@ -76,7 +75,7 @@ public class MapaControllerTest extends BaseControllerTest{
         .andExpect(status().isOk())
 	    .andReturn();
 
-	    Mockito.verify(mapaService).buscarTodos();
+	    Mockito.verify(mapaService).listarTodos();
 		Mockito.verify(mapaJSONConverter).converToListJSON(Mockito.anyList());
 	}
 	
@@ -93,21 +92,19 @@ public class MapaControllerTest extends BaseControllerTest{
 			.andExpect(jsonPath("$.rotas.[0].destino", is("destino")))
 			.andExpect(jsonPath("$.rotas.[0].distancia", is(1)));
 
-		Mockito.verify(mapaControllerValidator).validar(Mockito.any(MapaJSON.class));
-	    Mockito.verify(mapaService).buscarPorId(Mockito.eq(id));
+	    Mockito.verify(mapaService).buscar(Mockito.eq(id));
 		Mockito.verify(mapaJSONConverter).convertToJSON(Mockito.any(Mapa.class));	
 	}
 	
 	@Test
 	public void deveValidarQuandoLancadoUmaExcecao() throws Exception{
-		Mockito.doThrow(new APIException(Constants.ITEM_NAO_ENCONTRADO, HttpStatus.NOT_FOUND)).when(mapaControllerValidator).validar(Mockito.any(MapaJSON.class));
+		Mockito.doThrow(new EntregaMercadoriaException(Constants.ITEM_NAO_ENCONTRADO)).when(mapaService).buscar(Mockito.anyLong());
 		Long id = 1L;
 		getMockMvc().perform(get(MAPA_CALL+"{id}",id.toString()))
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isNotFound())
+        .andExpect(status().isBadRequest())
         .andExpect(jsonPath("$.mensagem", is(Constants.ITEM_NAO_ENCONTRADO)));
-	    Mockito.verify(mapaService).buscarPorId(Mockito.eq(id));
-		Mockito.verify(mapaJSONConverter).convertToJSON(Mockito.any(Mapa.class));	
+	    Mockito.verify(mapaService).buscar(Mockito.eq(id));
 	}
 	
 	@Test
@@ -116,10 +113,8 @@ public class MapaControllerTest extends BaseControllerTest{
 		getMockMvc().perform(delete(MAPA_CALL+"{id}",id.toString()))
         .andExpect(status().isOk())
 		.andExpect(jsonPath("$.mensagem", is(Constants.SUCESSO)));
-		Mockito.verify(mapaService).buscarPorId(Mockito.anyLong());
+		Mockito.verify(mapaService).buscar(Mockito.anyLong());
 		Mockito.verify(mapaService).deletar(Mockito.any(Mapa.class));
-		Mockito.verify(mapaControllerValidator).validar(Mockito.any(MapaJSON.class));
-		Mockito.verify(mapaJSONConverter).convertToJSON(Mockito.any(Mapa.class));
 	}
 	
 	@Test

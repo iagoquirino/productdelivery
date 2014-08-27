@@ -4,6 +4,6 @@ import com.wallmart.model.entrega.Mapa;
 
 public interface IMapaRepository extends IBaseRepositoryHibernate<Mapa> {
 
-	Mapa buscarMapaPorNome(String nome);
+	Mapa buscar(String nome);
 
 }

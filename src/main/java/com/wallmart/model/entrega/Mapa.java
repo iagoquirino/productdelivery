@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,9 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Entity;
-
-@javax.persistence.Entity
+@Entity
 @Table(name = "MAPA")
 @SequenceGenerator(sequenceName = "SEQ_MAPA" , name = "SEQ_MAPA",allocationSize=1,initialValue=1)
 public class Mapa implements Serializable {

@@ -6,35 +6,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wallmart.constants.Constants;
+import com.wallmart.exception.EntregaMercadoriaException;
 import com.wallmart.model.entrega.Mapa;
 import com.wallmart.repository.interfaces.IMapaRepository;
+import com.wallmart.service.interfaces.IMapaService;
 
 @Service
 @Transactional
-public class MapaServiceImpl {
+public class MapaServiceImpl implements IMapaService {
 	
 	@Autowired
 	private IMapaRepository mapaRepository;
 	
 	public Long salvar(Mapa mapa){
-		return mapaRepository.save(mapa).getId();
+		return mapaRepository.salvar(mapa).getId();
 	}
 	
-	public Mapa buscarPorId(Long id){
-		return mapaRepository.loadById(id);
+	public Mapa buscar(Long id) throws EntregaMercadoriaException{
+		Mapa mapa = mapaRepository.buscar(id);
+		if(mapa == null){
+			throw new EntregaMercadoriaException(Constants.ITEM_NAO_ENCONTRADO);
+		}
+		return mapa;
 	}
 	
-	public List<Mapa> buscarTodos(){
-		return mapaRepository.listAll();
+	public List<Mapa> listarTodos(){
+		return mapaRepository.listarTodos();
 	}
 	
 	public void deletar(Mapa mapa)
 	{
-		mapaRepository.delete(mapa);
+		mapaRepository.deletar(mapa);
 	}
 	
-	public Mapa buscarMapaPorNome(String nome) {
-		return mapaRepository.buscarMapaPorNome(nome);
+	public Mapa buscar(String nome) {
+		return mapaRepository.buscar(nome);
 	}
 
 	

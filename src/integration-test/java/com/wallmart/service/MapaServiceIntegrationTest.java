@@ -26,20 +26,20 @@ public class MapaServiceIntegrationTest {
 	
 	@Test
 	public void deveListaOMapa(){
-		Mapa mapa = mapaServiceImpl.buscarMapaPorNome("teste-integracao");
+		Mapa mapa = mapaServiceImpl.buscar("teste-integracao");
 		Assert.assertNotNull(mapa);
 		Assert.assertEquals(mapa.getNome(), "teste-integracao");
 	}
 	
 	@Test
 	public void deveRealizarADelecaoDoMapas(){
-		Mapa mapa = mapaServiceImpl.buscarMapaPorNome("teste-integracao");
+		Mapa mapa = mapaServiceImpl.buscar("teste-integracao");
 		mapaServiceImpl.deletar(mapa);
 	}
 	
 	@Test
 	public void deveVerificarBanco(){
-		Mapa mapa = mapaServiceImpl.buscarMapaPorNome("teste-integracao");
+		Mapa mapa = mapaServiceImpl.buscar("teste-integracao");
 		Assert.assertNull(mapa);
 	}
 	
