@@ -15,9 +15,7 @@
 		<org.springframework.version>3.2.0.RELEASE</org.springframework.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.hibernate.version>3.6.10.Final</org.hibernate.version>
-		<org.hibernate-validator.version>4.3.0.Final</org.hibernate-validator.version>
 		<org.codehaus.jackson.version>1.9.9</org.codehaus.jackson.version>
-		<org.aspectj.version>1.6.11</org.aspectj.version>
 		<com.jayway.jsonpath.version>0.8.1</com.jayway.jsonpath.version>
 		<org.mockito.version>1.9.5</org.mockito.version>
 	</properties>
@@ -46,14 +44,7 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-orm</artifactId>
 				<version>${org.springframework.version}</version>
-			</dependency>
-		<!-- TEST -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-test</artifactId>
-				<version>${org.springframework.version}</version>
-			    <scope>test</scope>
-			</dependency>
+			</dependency>			
 	    <!-- FIM SPRING -->
 	    
 	    <!-- HIBERNATE -->
@@ -67,12 +58,6 @@
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-ehcache</artifactId>
 				<version>${org.hibernate.version}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-validator</artifactId>
-				<version>${org.hibernate-validator.version}</version>
 			</dependency>
 	    <!-- FIM HIBERNATE -->
 	    <!-- DB -->
@@ -94,30 +79,11 @@
 				<version>${org.codehaus.jackson.version}</version>
 			</dependency>
 	    <!-- FIM JSON -->
-	    <!-- ASPECTJ -->
-		    <dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjrt</artifactId>
-				<version>${org.aspectj.version}</version>
-			</dependency>
-	
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjweaver</artifactId>
-				<version>${org.aspectj.version}</version>
-			</dependency>
-	    <!-- FIM ASPECTJ-->
 	    <!-- JAVAX  -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>3.0.1</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-				<version>1.2</version>
 			</dependency>
 		<!-- END JAVAX -->		
 
@@ -126,12 +92,6 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.1.1</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>standard</artifactId>
-			<version>1.1.2</version>
-		</dependency>
 
 		<dependency>
 			<groupId>c3p0</groupId>
@@ -139,19 +99,16 @@
 			<version>0.8.5.2</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.ow2.orchestra</groupId>
-			<artifactId>orchestra-core</artifactId>
-			<version>4.7.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.restfb</groupId>
-			<artifactId>restfb</artifactId>
-			<version>1.6.11</version>
-		</dependency>
-
 		<!-- SCOPE TEST -->
+
+		<!-- SPRING -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${org.springframework.version}</version>
+			    <scope>test</scope>
+			</dependency>
+		<!-- SPRING -->
 		
 		<!-- MOCKITO -->
 			<dependency>
@@ -203,20 +160,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
-		<dependency>
-		    <groupId>com.github.springtestdbunit</groupId>
-		    <artifactId>spring-test-dbunit</artifactId>
-		    <version>1.0.0</version>
-		    <scope>test</scope>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.dbunit</groupId>
-		    <artifactId>dbunit</artifactId>
-		    <version>2.4.8</version>
-		    <scope>test</scope>
-		</dependency>		
 		
 		<!-- FIM SCOPE TEST -->
 	</dependencies>
