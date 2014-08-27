@@ -55,7 +55,7 @@ public class MapaController extends APIController {
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public String salvar(@RequestBody String json){
 		MapaJSON mapaJSON = new Gson().fromJson(json, MapaJSON.class);
-		mapaValidator.validarPost(mapaJSON);
+		mapaValidator.validar(mapaJSON);
 		Long id = mapaService.salvar(mapaJSONConverter.convertToModel(mapaJSON));
 		return toJSON(new MensagemJSON(id,Constants.SUCESSO));
 	}

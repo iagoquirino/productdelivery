@@ -127,7 +127,7 @@ public class MapaControllerTest extends BaseControllerTest{
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 		.andExpect(jsonPath("$.mensagem", is(Constants.SUCESSO)))
 		.andExpect(jsonPath("$.codigo", is(id.intValue())));
-		Mockito.verify(mapaControllerValidator).validarPost(Mockito.any(MapaJSON.class));
+		Mockito.verify(mapaControllerValidator).validar(Mockito.any(MapaJSON.class));
 		Mockito.verify(mapaJSONConverter).convertToModel(Mockito.any(MapaJSON.class));
 	}
 	

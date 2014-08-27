@@ -22,7 +22,7 @@ public class MapaControllerValidator {
 	@Autowired
 	private MapaServiceImpl mapaServiceImpl;
 
-	public void validarPost(MapaJSON mapaJSON)
+	public void validar(MapaJSON mapaJSON)
 	{
 		if(mapaJSON == null){
 			throw new APIException(Constants.ITEM_INVALIDO, BAD_REQUEST);

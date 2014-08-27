@@ -33,7 +33,7 @@ public class MapaControllerValidatorTest {
 	@Test
 	public void deveValidarQuandoEnviadoMapaNulo(){
 		try{
-			mapaControllerValidator.validarPost(null);
+			mapaControllerValidator.validar(null);
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.ITEM_INVALIDO, e.getMensagemJSON().getMensagem());
@@ -44,7 +44,7 @@ public class MapaControllerValidatorTest {
 	@Test
 	public void deveValidarQuandoEnviadoMapaComNomeNulo(){
 		try{
-			mapaControllerValidator.validarPost(new MapaJSON());
+			mapaControllerValidator.validar(new MapaJSON());
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.MAPA_NOME_INVALIDO, e.getMensagemJSON().getMensagem());
@@ -56,7 +56,7 @@ public class MapaControllerValidatorTest {
 	public void deveValidarQuandoEnviadoMapaJaCadastrado(){
 		try{
 			Mockito.when(mapaService.buscar(Mockito.anyString())).thenReturn(new Mapa());
-			mapaControllerValidator.validarPost(new MapaJSON("teste"));
+			mapaControllerValidator.validar(new MapaJSON("teste"));
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.MAPA_JA_CADASTRADO, e.getMensagemJSON().getMensagem());
@@ -67,7 +67,7 @@ public class MapaControllerValidatorTest {
 	@Test
 	public void deveValidarQuandoEnviadoMapaComRotasVazias(){
 		try{
-			mapaControllerValidator.validarPost(new MapaJSON("mapa"));
+			mapaControllerValidator.validar(new MapaJSON("mapa"));
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.MAPA_ROTAS_INVALIDAS, e.getMensagemJSON().getMensagem());
@@ -81,7 +81,7 @@ public class MapaControllerValidatorTest {
 			MapaJSON mapa = new MapaJSON("mapa");
 			RotaJSON rotaNula = null;
 			mapa.setRotas(Arrays.asList(rotaNula));
-			mapaControllerValidator.validarPost(mapa);
+			mapaControllerValidator.validar(mapa);
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.ROTA_INVALIDA, e.getMensagemJSON().getMensagem());
@@ -95,7 +95,7 @@ public class MapaControllerValidatorTest {
 			MapaJSON mapa = new MapaJSON("mapa");
 			RotaJSON rotaNula = new RotaJSON();
 			mapa.setRotas(Arrays.asList(rotaNula));
-			mapaControllerValidator.validarPost(mapa);
+			mapaControllerValidator.validar(mapa);
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.ROTA_ORIGEM_INVALIDA, e.getMensagemJSON().getMensagem());
@@ -109,7 +109,7 @@ public class MapaControllerValidatorTest {
 			MapaJSON mapa = new MapaJSON("mapa");
 			RotaJSON rotaNula = new RotaJSON("origem","",0);
 			mapa.setRotas(Arrays.asList(rotaNula));
-			mapaControllerValidator.validarPost(mapa);
+			mapaControllerValidator.validar(mapa);
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.ROTA_DESTINO_INVALIDO, e.getMensagemJSON().getMensagem());
@@ -123,7 +123,7 @@ public class MapaControllerValidatorTest {
 			MapaJSON mapa = new MapaJSON("mapa");
 			RotaJSON rotaNula = new RotaJSON("origem","destino",0);
 			mapa.setRotas(Arrays.asList(rotaNula));
-			mapaControllerValidator.validarPost(mapa);
+			mapaControllerValidator.validar(mapa);
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.ROTA_DISTANCIA_INVALIDA, e.getMensagemJSON().getMensagem());
@@ -138,7 +138,7 @@ public class MapaControllerValidatorTest {
 			RotaJSON rotaNula = new RotaJSON("origem","destino",1);
 			RotaJSON rotaNula2 = new RotaJSON("origem","destino",2);
 			mapa.setRotas(Arrays.asList(rotaNula,rotaNula2));
-			mapaControllerValidator.validarPost(mapa);
+			mapaControllerValidator.validar(mapa);
 			Assert.fail();
 		}catch(APIException e){
 			Assert.assertEquals(Constants.MAPA_ROTA_REPETIDA, e.getMensagemJSON().getMensagem());
@@ -152,7 +152,7 @@ public class MapaControllerValidatorTest {
 			MapaJSON mapa = new MapaJSON("mapa");
 			RotaJSON rotaNula = new RotaJSON("origem","destino",1);
 			mapa.setRotas(Arrays.asList(rotaNula));
-			mapaControllerValidator.validarPost(mapa);	
+			mapaControllerValidator.validar(mapa);	
 		}catch(APIException e){
 			Assert.fail();
 		}
