@@ -31,8 +31,8 @@ public class MapaServiceImpl implements IMapaService {
 		return mapa;
 	}
 	
-	public List<Mapa> listarTodos(){
-		return mapaRepository.listarTodos();
+	public List<Mapa> listar(){
+		return mapaRepository.listar();
 	}
 	
 	public void deletar(Mapa mapa)

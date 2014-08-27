@@ -11,7 +11,7 @@ public interface IMapaService {
 	
 	Mapa buscar(String nome);
 
-	List<Mapa> listarTodos();
+	List<Mapa> listar();
 
 	Long salvar(Mapa convertToModel);
 

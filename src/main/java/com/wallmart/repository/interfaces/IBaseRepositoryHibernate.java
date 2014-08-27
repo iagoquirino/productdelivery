@@ -29,7 +29,7 @@ public interface IBaseRepositoryHibernate<T> {
 	
 	T buscar( Long id );
 	
-	List<T> listarTodos( );
+	List<T> listar( );
 	
 	int executeUpdate(String sql);
 

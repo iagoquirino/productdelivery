@@ -126,7 +126,7 @@ public abstract class BaseRepositoryHibernate<T> extends HibernateDaoSupport imp
 		return (T) getHibernateTemplate().get( getEntityClass(), id );
 	}
 	
-	public List<T> listarTodos( )
+	public List<T> listar( )
 	{
 		return getHibernateTemplate().loadAll( getEntityClass() );
 	}

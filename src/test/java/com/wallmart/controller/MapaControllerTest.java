@@ -62,7 +62,7 @@ public class MapaControllerTest extends BaseControllerTest{
         .andExpect(jsonPath("$[0].rotas.[0].destino", is("destino")))
         .andExpect(jsonPath("$[0].rotas.[0].distancia", is(1)));
 
-		Mockito.verify(mapaService).listarTodos();
+		Mockito.verify(mapaService).listar();
 		Mockito.verify(mapaJSONConverter).converToListJSON(Mockito.anyList());
 	}
 
@@ -75,7 +75,7 @@ public class MapaControllerTest extends BaseControllerTest{
         .andExpect(status().isOk())
 	    .andReturn();
 
-	    Mockito.verify(mapaService).listarTodos();
+	    Mockito.verify(mapaService).listar();
 		Mockito.verify(mapaJSONConverter).converToListJSON(Mockito.anyList());
 	}
 	

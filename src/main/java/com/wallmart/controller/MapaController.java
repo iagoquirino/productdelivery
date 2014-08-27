@@ -38,7 +38,7 @@ public class MapaController extends APIController {
 	@ResponseBody
 	@ResponseStatus(value = HttpStatus.OK)
 	public String listar(){
-		List<MapaJSON> listJSON = mapaJSONConverter.converToListJSON(mapaService.listarTodos());
+		List<MapaJSON> listJSON = mapaJSONConverter.converToListJSON(mapaService.listar());
 		return toJSON(listJSON);
 	}
 	

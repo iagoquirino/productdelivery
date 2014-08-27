@@ -19,7 +19,7 @@ public class CleanAll {
 	
 	@Test
 	public void cleanAll(){
-		List<Mapa> mapas = mapaServiceImpl.listarTodos();
+		List<Mapa> mapas = mapaServiceImpl.listar();
 		for (Mapa mapa : mapas) {
 			mapaServiceImpl.deletar(mapa);
 		}
