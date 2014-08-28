@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.wallmart.exception.APIException;
-import com.wallmart.exception.EntregaMercadoriaException;
-import com.wallmart.rest.json.MensagemJSON;
+import com.wallmart.exception.ProductDeliveryException;
+import com.wallmart.rest.json.MessageJSON;
 
 public class APIController {
 
 	@ExceptionHandler(value=APIException.class)
 	@ResponseBody
-	protected MensagemJSON tratarErroAPI(APIException exception, HttpServletResponse response) throws IOException{
+	protected MessageJSON processAPIError(APIException exception, HttpServletResponse response) throws IOException{
 		response.setStatus(exception.getHttpStatus().value());
 		response.setContentType("application/json");
-		return exception.getMensagemJSON();
+		return exception.getMessageJSON();
     }
 	
-	@ExceptionHandler(value=EntregaMercadoriaException.class)
+	@ExceptionHandler(value=ProductDeliveryException.class)
 	@ResponseBody
-    protected MensagemJSON tratarErroService(EntregaMercadoriaException exception, HttpServletResponse response) throws IOException{
+    protected MessageJSON processBusinessError(ProductDeliveryException exception, HttpServletResponse response) throws IOException{
 		response.setStatus(HttpStatus.BAD_REQUEST.value());
 		response.setContentType("application/json");
-		return new MensagemJSON(exception.getMensagem());
+		return new MessageJSON(exception.getMessage());
     }
 	
 	protected String toJSON(Object object)

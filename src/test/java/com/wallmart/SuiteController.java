@@ -3,13 +3,13 @@ package com.wallmart;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import com.wallmart.controller.EntregaControllerTest;
-import com.wallmart.controller.MapaControllerTest;
+import com.wallmart.controller.DeliveryControllerTest;
+import com.wallmart.controller.MapControllerTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	MapaControllerTest.class,
-	EntregaControllerTest.class
+	MapControllerTest.class,
+	DeliveryControllerTest.class
 })
 public class SuiteController {
   

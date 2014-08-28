@@ -8,20 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.wallmart.model.entrega.Mapa;
-import com.wallmart.service.MapaServiceImpl;
+import com.wallmart.model.delivery.Map;
+import com.wallmart.service.MapServiceImpl;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class CleanAll {
 
 	@Autowired
-	private MapaServiceImpl mapaServiceImpl;
+	private MapServiceImpl mapaServiceImpl;
 	
 	@Test
 	public void cleanAll(){
-		List<Mapa> mapas = mapaServiceImpl.listar();
-		for (Mapa mapa : mapas) {
-			mapaServiceImpl.deletar(mapa);
+		List<Map> mapas = mapaServiceImpl.list();
+		for (Map mapa : mapas) {
+			mapaServiceImpl.delete(mapa);
 		}
 	}
 	

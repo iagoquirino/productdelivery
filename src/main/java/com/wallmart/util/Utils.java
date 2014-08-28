@@ -5,11 +5,11 @@ import java.math.RoundingMode;
 
 public class Utils {
 	
-	public static double arredondar(Double value) {
-	    return arredondar(value,2);
+	public static double round(Double value) {
+	    return round(value,2);
 	}
 	
-	private static double arredondar(Double value, int places) {
+	private static double round(Double value, int places) {
 	    if (value == null || places < 0) 
 	    {
 	    	throw new IllegalArgumentException();

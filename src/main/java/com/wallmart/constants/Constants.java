@@ -1,19 +1,19 @@
 package com.wallmart.constants;
 
 public class Constants {
-	public static final String SUCESSO = "comum.sucesso";
-	public static final String ERRO = "comum.erro";
-	public static final String ITEM_NAO_ENCONTRADO = "registro.nao.encontrado";
-	public static final String ERRO_ROTA = "rota.nao.encontrada";
-	public static final String ITEM_INVALIDO = "item.invalido";
-	public static final String MAPA_NOME_INVALIDO = "mapa.nome.invalido";
-	public static final String MAPA_ROTAS_INVALIDAS = "mapa.contem.rotas.invalidas";
-	public static final String ROTA_INVALIDA = "rota.invalida";
-	public static final String ROTA_ORIGEM_INVALIDA = "origem.rota.invalida";
-	public static final String ROTA_DESTINO_INVALIDO = "destino.rota.invalido";
-	public static final String ROTA_DISTANCIA_INVALIDA = "distancia.rota.invalida";
-	public static final String VALOR_COMBUSTIVEL_INVALIDO = "valor.combustivel.invalido";
-	public static final String AUTONOMIA_INVALIDA = "autonomia.invalida";
-	public static final String MAPA_JA_CADASTRADO = "mapa.ja.cadastrado";
-	public static final String MAPA_ROTA_REPETIDA = "mapa.contem.rota.repetida";
+	public static final String SUCESS = "common.sucess";
+	public static final String ERROR = "common.error";
+	public static final String ITEN_NOT_FOUND = "common.not.found";
+	public static final String ERROR_ROUTE_NOT_FOUND = "route.not.found";
+	public static final String ITEN_INVALID = "iten.invalid";
+	public static final String INVALID_MAP_NAME = "invalid.map.name";
+	public static final String INVALID_ROUTES_MAP = "invalid.routes.map";
+	public static final String INVALID_ROUTE = "invalid.route";
+	public static final String INVALID_ORIGIN_ROUTE = "invalid.origin.route";
+	public static final String INVALID_DESTINATION_ROUTE = "invalid.destination.route";
+	public static final String INVALID_DISTANCE_ROUTE = "invalid.distance.route";
+	public static final String INVALID_GAS_COST = "invalid.gascost";
+	public static final String INVALID_AUTONOMY = "invalid.autonomy";
+	public static final String ALREADY_REGISTERED_MAP = "already.registered.map";
+	public static final String REPEATED_MAP = "repeated.map";
 }
