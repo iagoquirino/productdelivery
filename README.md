@@ -29,4 +29,4 @@ Apache Tomcat 7 - http://tomcat.apache.org/download-70.cgi
 
 Para informações de API´S acesse o WIKI.
 
-https://github.com/iquirino88/entregamercadorias/wiki/API%C2%B4S
+https://github.com/iquirino88/productdelivery/wiki/API%C2%B4S
