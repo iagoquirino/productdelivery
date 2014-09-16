@@ -3,8 +3,6 @@ package com.wallmart.rest.json;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
@@ -53,8 +51,4 @@ public class MapJSON {
 		this.routes = routes;
 	}
 	
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
 }
