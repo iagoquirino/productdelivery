@@ -26,13 +26,6 @@
 		<developerConnection>scm:git:git@github.com:iquirino88/productdelivery.git</developerConnection>
 	</scm>
 
-	<distributionManagement>
-	    <repository>
-	        <id>${artifactId}</id>
-	        <url>https://github.com/iquirino88/productdelivery.git</url>
-	    </repository>
-	</distributionManagement>	
-	
 	<dependencies>
 		<!-- SPRING -->
 		<dependency>
