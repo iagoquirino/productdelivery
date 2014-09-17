@@ -21,8 +21,9 @@
 	</properties>
 
 	<scm>
-		<url>https://github.com/${GIT_USER}/productdelivery</url>
-		<connection>scm:git:https://github.com/${GIT_USER}/productdelivery.git</connection>
+		<url>https://github.com/iquirino88/productdelivery</url>
+		<connection>scm:git:git://github.com/iquirino88/productdelivery.git</connection>
+		<developerConnection>scm:git:git://github.com/iquirino88/productdelivery.git</developerConnection>
 	</scm>
 
 	<distributionManagement>
