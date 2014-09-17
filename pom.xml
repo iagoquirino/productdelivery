@@ -7,6 +7,14 @@
 	<artifactId>productdelivery</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.2-SNAPSHOT</version>
+	
+	<distributionManagement>
+		<repository>
+		  <id>local-releases</id>
+		  <name>local</name>
+		  <url>file:///home/ubuntu/releases</url>
+		</repository>
+	</distributionManagement>
 
 	<properties>
 		<gson.version>2.2.4</gson.version>
