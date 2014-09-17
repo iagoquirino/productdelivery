@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>entregamercadorias</groupId>
-	<artifactId>entregamercadorias</artifactId>
+	<groupId>productdelivery</groupId>
+	<artifactId>productdelivery</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
@@ -22,10 +22,16 @@
 
 	<scm>
 		<url>https://github.com/iquirino88/productdelivery</url>
-		<connection>scm:git:https://github.com/productdelivery.git</connection>
-		<developerConnection>scm:git:https://github.com/productdelivery.git</developerConnection>
+		<connection>scm:git:https://github.com/iquirino88/productdelivery.git</connection>
 	</scm>
 
+	<distributionManagement>
+	    <repository>
+	        <id>${artifactId}</id>
+	        <url>https://github.com/iquirino88/productdelivery.git</url>
+	    </repository>
+	</distributionManagement>	
+	
 	<dependencies>
 		<!-- SPRING -->
 		<dependency>
@@ -182,7 +188,7 @@
 
 		<!-- FIM SCOPE TEST -->
 	</dependencies>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -193,6 +199,13 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+	        <plugin>
+	            <artifactId>maven-scm-plugin</artifactId>
+	            <version>1.8.1</version>
+	            <configuration>
+	                <tag>${project.artifactId}-${project.version}</tag>
+	            </configuration>
+	        </plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.2</version>
