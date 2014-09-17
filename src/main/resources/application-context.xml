@@ -10,7 +10,11 @@
                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
                            http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.0.xsd">
     
-    <context:component-scan base-package="com.wallmart" />
+    <context:component-scan base-package="com.wallmart" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
     
 	<!-- Arquivos de configuracao *.properties -->
 	<bean id="propertyConfigurer"
@@ -23,7 +27,6 @@
 	</bean>    
     
 	<import resource="application-context-bd.xml" />
-	<import resource="application-context-scan.xml" />
 	<import resource="application-context-datasource.xml" />
 	<import resource="application-context-mvc.xml" />
 	<tx:annotation-driven />
