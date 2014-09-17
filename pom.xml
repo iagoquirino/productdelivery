@@ -23,7 +23,7 @@
 	<scm>
 		<url>https://github.com/iquirino88/productdelivery</url>
 		<connection>scm:git:git://github.com/iquirino88/productdelivery.git</connection>
-		<developerConnection>scm:git:git@github.com:iquirino88/productdelivery.git</developerConnection>
+		<developerConnection>scm:git:git://github.com/iquirino88/productdelivery.git</developerConnection>
 	</scm>
 
 	<dependencies>
